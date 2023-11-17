@@ -40,7 +40,7 @@ app.post(`/register`, (req,res,next)=>{
     console.log(post);
 
     const querystring = 
-    `insert into Account values ('Admin', 'cms3973', 'Admin', 0);`
+    `insert into Account values ('ksh', '973', 'Amin', 0);`
     dbClient.query(querystring);
     console.log(querystring);
 

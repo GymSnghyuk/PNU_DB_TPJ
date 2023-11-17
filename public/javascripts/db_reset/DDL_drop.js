@@ -26,7 +26,7 @@ create table Account
 	 name		    varchar(15),
      user_category  numeric(1,0),
 	 primary key (user_ID)
-	);a
+	);
 
 create table Disabled
     (disabled_ID    int,
