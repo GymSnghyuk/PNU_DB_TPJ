@@ -35,7 +35,7 @@ app.post(`/register`, (req,res,next)=>{
     body += data;
   });
   req.on('end',function(){
-    let post = qs.parse(body);  //body의 내용이 { title: 'd', description: 'd' }
+    let post = qs.parse(body);    //body의 내용이 { title: 'd', description: 'd' }
     console.log(post.ID_reg);     //와 같이 딕셔너리 형태로 저장된다
     console.log(post);
 
