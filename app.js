@@ -1,5 +1,4 @@
 const express = require(`express`);
-// const path = require(`path`);
 
 const indexrouter = require(`./routes/index`);
 const loginrouter = require(`./routes/login`);
@@ -9,6 +8,8 @@ const app = express();
 app.set(`port`, process.env.PORT || 3000);
 app.set(`view engine`, `ejs`);
 app.set(`views`, __dirname + `/views`);
+
+app.use(`/script`, express.static(__dirname + "/public/javascripts"))
 
 app.use(`/`, indexrouter);
 app.use(`/login`, loginrouter);
