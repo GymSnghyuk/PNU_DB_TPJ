@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon index.js",
-    "db_init" : "node lib/db_reset/RelationsInsert.js" 
+    "db_reset" : "node lib/db_reset/RelationsInsert.js",
+    "db_init" : "node lib/db_reset/DDL_drop.js"
   }
 }
