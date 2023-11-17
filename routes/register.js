@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const dbClient = require(`../lib/db`);
 const qs = require(`querystring`);
+const rd = require(`./register_category/register_disabled`);
 
-const ID_NUMBER_CONST = 1;
 
-function check_user_category(user_category){
+function check_user_category(name,user_id,user_category){
     if(user_category == 1){
-        console.log("장애인");
+        console.log(`장애인`);
+        rd.disabled_register(name, false, false, `축구`, `왼팔장애`, user_id)
     } else if(user_category == 2){
         console.log("보호자");
     } else if(user_category == 3){
@@ -45,7 +46,11 @@ router.post(`/`, (req,res,next)=>{
             .query(querystring)
             .then(() => {
                 console.log(querystring);
-                check_user_category(post.user_category);
+            })
+            .then(()=>{
+                check_user_category(post.NAME_reg, post.ID_reg, post.user_category);
+            })
+            .then(()=>{
                 res.render(`login`);
             })
             .catch((e) => {

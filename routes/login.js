@@ -38,7 +38,7 @@ router.post(`/`, (req, res, next) => {
                 }
             })
             .catch((e) => {
-                res.render(`alert`, {error : '아이디 / 비밀번호가 맞지 않음'})
+                res.render(`alert`, {error : `오류`})
                 console.error(e.stack)
             });
     });
