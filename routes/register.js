@@ -27,7 +27,7 @@ router.get(`/`, (req,res)=>{
 })
 
 router.get(`/dup_chk`,(req,res,next)=>{
-    res.render(`id_dup_check`)
+    res.render(`id_dup_check`);
 })
   
 router.post(`/`, (req,res,next)=>{
