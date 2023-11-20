@@ -3,6 +3,9 @@ const router = express.Router();
 const dbClient = require(`../lib/db`);
 const qs = require(`querystring`);
 const rd = require(`./register_category/register_disabled`);
+const rp = require(`./register_category/register_parent`);
+const rc = require(`./register_category/register_center`);
+const rt = require(`./register_category/register_teacher`);
 
 
 function check_user_category(name,user_id,user_category){
@@ -11,12 +14,13 @@ function check_user_category(name,user_id,user_category){
         rd.disabled_register(name, false, false, `축구`, `왼팔장애`, user_id)
     } else if(user_category == 2){
         console.log("보호자");
+        rp.parent_register(name,user_id);
     } else if(user_category == 3){
         console.log("센터");
+        rc.center_register(name,"부산시 금정구",user_id);
     } else if(user_category == 4){
         console.log("강사");
-    } else if(user_category == 0){
-        console.log("관리자");
+        rt.teacher_register(name, user_id);
     } else {
         console.log("잘못 입력됨");
     }
@@ -51,7 +55,7 @@ router.post(`/`, (req,res,next)=>{
                 check_user_category(post.NAME_reg, post.ID_reg, post.user_category);
             })
             .then(()=>{
-                res.render(`login`);
+                res.redirect(`login`);
             })
             .catch((e) => {
                 res.render(`alert`, {error : `가입정보를 다시 확인하세요.`})
