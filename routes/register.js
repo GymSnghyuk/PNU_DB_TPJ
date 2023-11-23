@@ -43,7 +43,7 @@ router.get(`/`, (req,res)=>{
 })
 
 
-  
+// 회원가입하는거
 router.post(`/`, (req,res,next)=>{
     let body = ``;
     req.on('data', function (data) {
@@ -52,8 +52,7 @@ router.post(`/`, (req,res,next)=>{
 
     req.on('end',function(){
         let post = qs.parse(body);
-        if (!req.session.user) {
-            // 세션에 유저가 존재한다면
+        if (!req.session.dupreg) {
             res.render(`alert`, {error : `중복체크 후 회원가입 해주세요.`});
           } else {
             const querystring = 
@@ -105,10 +104,7 @@ router.post(`/dup_chk`,(req,res,next)=>{
                     res.render(`alert`, {error : `너무길어`});
                 }
                 else{
-                    req.session.user = {
-                        id: post.ID_login,
-                        name: "user_name",
-                        };
+                    req.session.dupreg = true;
                     console.log("세션에 중복체크한거 등록");
                     res.render(`alert`, {error : `가입가능한 이이디입니다.`});
                 }

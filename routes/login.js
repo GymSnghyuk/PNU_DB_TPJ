@@ -2,24 +2,17 @@ const express = require('express');
 const router = express.Router();
 const qs = require(`querystring`);
 const dbClient = require(`../lib/db`);
-const cookieParser = require("cookie-parser");
-const expressSession = require(`express-session`);
-const examplerouter = require(`./login_example/example`)
+
+
 
 router.get(`/`, (req, res) => {
-    res.render(`login`);
+    if(req.session.user){
+        res.redirect(`/main`)
+    } else {
+        res.render(`login`);
+    }
 });
 
-router.use(cookieParser());
-
-// 세션 설정
-router.use(
-  expressSession({
-    secret: "my key",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 router.post(`/`, (req, res, next) => {
     let body = ``;
@@ -32,7 +25,7 @@ router.post(`/`, (req, res, next) => {
 
         const querystring = 
             `
-            SELECT A.user_id FROM account A
+            SELECT A.user_id, A.name FROM account A
             WHERE A.user_id = '${post.ID_login}' 
                 and A.password = '${post.PW_login}';
             `;
@@ -47,7 +40,7 @@ router.post(`/`, (req, res, next) => {
                       } else {
                         req.session.user = {
                           id: post.ID_login,
-                          name: "user_name",
+                          name: ans.rows[0]['name'],
                         };
                       }
                     res.redirect(`main`);

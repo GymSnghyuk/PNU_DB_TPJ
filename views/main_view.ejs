@@ -6,6 +6,20 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="/logout" method="post">
+        <div>
+            <input type="submit" value="로그아웃">
+        </div>
+    </form>
     <h1>메인화면 (로그인 성공 후)</h1>
+    <h2>ID : <%=userid%></h2>
+    <h2>NAME : <%=username%></h2>
+    위에껀 그냥 디버깅 용도로 쓴거임 나중에 지우자
+    <br><br>
+    <h3>게시글 목록 나와야됨</h3>
+    <h4>게시글 제목 ------- 작성자 등등</h4>
+    <form action="/post/1" method="GET">
+        <input type="submit" value="예제 게시글">
+    </form>
 </body>
 </html>
