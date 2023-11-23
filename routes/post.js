@@ -3,9 +3,8 @@ const router = express.Router();
 const dbClient = require(`../lib/db`);
 
 router.get(`/:id`, (req, res, next)=>{
-    req.params // post.postid
-
-    const querystring = `
+    if (req.session.user) {
+        const querystring = `
         SELECT title, Po.date, Po.content, Pr.teacher_id
         FROM post Po, program Pr
         WHERE Po.post_id = ${req.params['id']} 
@@ -16,7 +15,6 @@ router.get(`/:id`, (req, res, next)=>{
     dbClient.query(querystring)
         .then((results)=>{
             const post_data = results.rows[0];
-            console.log(post_data);
             res.render(`post`, {
                 post_title : post_data['title'],
                 post_date : post_data['date'],
@@ -26,10 +24,11 @@ router.get(`/:id`, (req, res, next)=>{
         })
         .catch((err)=>{
             console.error(err);
-            res.redirect(`/`);
+            res.render(`alert`, "오류 발생");
         })
-
-    
-})
+    } else {
+        res.redirect("/login"); // fhrmdlsdmfh
+      }
+});
 
 module.exports = router;

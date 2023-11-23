@@ -1,10 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const dbClient = require(`../lib/db`);
 
 router.get(`/`, (req, res) => {
     if (req.session.user) {
-      // 세션에 유저가 존재한다면
-      res.render("main_view", {userid:req.session.user.id, username: req.session.user.name}); // 예시로
+      const querystring = `
+        SELECT title, content, date, post_id
+        FROM post;
+      `
+
+      dbClient.query(querystring)
+        .then((ans)=>{
+          res.render("main_view", {
+            userid:req.session.user.id,
+            username: req.session.user.name,
+            posts: ans.rows,
+            }); 
+        })
+        .catch((err)=>{
+          console.error(err);
+          res.render(`alert`, {error: "오류났어"});
+        })
     } else {
       res.redirect("/login"); // fhrmdlsdmfh
     }

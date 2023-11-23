@@ -16,10 +16,35 @@
     <h2>NAME : <%=username%></h2>
     위에껀 그냥 디버깅 용도로 쓴거임 나중에 지우자
     <br><br>
-    <h3>게시글 목록 나와야됨</h3>
-    <h4>게시글 제목 ------- 작성자 등등</h4>
-    <form action="/post/1" method="GET">
-        <input type="submit" value="예제 게시글">
+    
+    <table>
+        <thead>
+        <tr>
+          <th>제목</th>
+          <th>날짜</th>
+        </tr>
+        </thead>
+        <% for(let post of posts){ %>
+        <tbody>
+          <tr>
+            <form id="post_frm" action="" method="GET">
+            <td><a href="#" onclick="chk_form( <%=post.post_id%> )" ><%= post.title %></a></td>
+            <td><%= post.date%></td>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
     </form>
+
+
+    <script>
+        chk_form=function(url){
+            let frm = document.getElementById('post_frm');
+            frm.action = `/post/${url}`
+            frm.submit();
+        }
+        
+    </script>
+    
 </body>
 </html>

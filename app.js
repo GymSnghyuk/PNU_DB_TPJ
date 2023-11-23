@@ -30,14 +30,15 @@ app.use(expressSession({
 
 app.use(`/script`, express.static(__dirname + "/public/javascripts"));
 app.use(`/css`, express.static(__dirname + "/public/stylesheets"));
-app.use(`/image`, express.static(__dirname + "/public/images"))
+app.use(`/image`, express.static(__dirname + "/public/images"));
+
 
 app.use(`/`, indexrouter);
 app.use(`/login`, loginrouter);
 app.use(`/register`, registerrouter);
 app.use(`/main`, mainrouter);
-app.use(`/logout`, logoutrouter)
-app.use(`/post`, postrouter);
+app.use(`/logout`, logoutrouter);
+app.use(`/post`,postrouter);
 
 app.listen(app.get('port'), () => {
   console.log(`Example app listening on port ${app.get('port')}`);
