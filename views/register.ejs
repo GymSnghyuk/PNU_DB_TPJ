@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
     <script src="/script/check_dup.js"></script>
 </head>
 <body>
-    <h1>회원가입 창</h1>
-    <form action="/register" method="POST" id="register_user">
-        <div>
-            <label for="ID_reg">아이디 : </label>
-            <input type="text" name="ID_reg" id="ID_reg">
-            <input type="button" id="check_button" value="ID 중복 검사" onclick="open_dup_window();"></button>
-        </div>
-        <div>
-            <label for="PW_reg">비밀번호 : </label>
-            <input type="password" name="PW_reg" id="PW_reg">
-        </div>
-        <div>
-            <label for="NAME_reg">이름 : </label>
-            <input type="text" name="NAME_reg" id="NAME_reg">
-        </div>
-        <div>
-            <label for="user_category">유저 카테고리 : </label>
-            <label><input type="checkbox" name="user_category" id="user_category">장애인</label>
-            <label><input type="checkbox" name="user_category" id="user_category">보호자</label>
-            <label><input type="checkbox" name="user_category" id="user_category">센터</label>
-            <label><input type="checkbox" name="user_category" id="user_category">강사</label>
-            <label><input type="checkbox" name="user_category" id="user_category">관리자</label>
-            
-        </div>
-        <input type="submit" value="회원가입"></button>
-    </form>
-    
+    <div class="regist-wrapper">
+        <h1 style="text-align: center;">회원가입</h1>
+        <form action="/register" method="POST" id="register_user">
+            <div>
+                <input type="text" name="ID_reg" id="ID_reg" placeholder="ID">
+                <input type="button" id="check_button" value="ID 중복 검사" onclick="open_dup_window();"></button>
+            </div>
+            <div>
+                <input type="password" name="PW_reg" id="PW_reg" placeholder="Password">
+            </div>
+            <div>
+                <input type="check_password" name="PW_check" id="PW_check" placeholder="Password 재입력">
+            </div>
+            <div>
+                <label for="NAME_reg">이름 : </label>
+                <input type="text" name="NAME_reg" id="NAME_reg">
+            </div>
+            <div>
+                <label for="user_category">유저 카테고리 : </label>
+                <label><input type="checkbox" name="user_category" id="user_category">장애인</label>
+                <label><input type="checkbox" name="user_category" id="user_category">보호자</label>
+                <label><input type="checkbox" name="user_category" id="user_category">센터</label>
+                <label><input type="checkbox" name="user_category" id="user_category">강사</label>
+                <label><input type="checkbox" name="user_category" id="user_category">관리자</label>
+                
+            </div>
+            <input type="submit" value="회원가입"></button>
+        </form>
+    </div>
 </body>
 </html>
