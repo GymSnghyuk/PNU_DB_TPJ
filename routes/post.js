@@ -6,7 +6,7 @@ router.get(`/:id`, (req, res, next)=>{
     req.params // post.postid
 
     const querystring = `
-        SELECT title, Po.date as date, Po.content, Pr.teacher_id
+        SELECT title, Po.date, Po.content, Pr.teacher_id
         FROM post Po, program Pr
         WHERE Po.post_id = ${req.params['id']} 
             and Po.program_id = Pr.program_id;
