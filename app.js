@@ -11,6 +11,7 @@ app.set(`views`, __dirname + `/views`);
 
 app.use(`/script`, express.static(__dirname + "/public/javascripts"));
 app.use(`/css`, express.static(__dirname + "/public/stylesheets"));
+app.use(`/img`, express.static(__dirname + "/public/images"));
 
 app.use(`/`, indexrouter);
 app.use(`/login`, loginrouter);
