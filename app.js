@@ -4,10 +4,11 @@ const expressSession = require(`express-session`);
 const indexrouter = require(`./routes/index`);
 const loginrouter = require(`./routes/login`);
 const registerrouter = require(`./routes/register`);
-const mainrouter = require(`./routes/main`);
+const postlistrouter = require(`./routes/post_list`);
 const logoutrouter = require(`./routes/logout`);
 const postrouter = require(`./routes/post`);
 const findrouter = require(`./routes/finder`);
+const mypagerouter = require(`./routes/mypage`);
 
 
 const app = express();
@@ -38,9 +39,10 @@ app.use(`/`, indexrouter);
 app.use(`/finder`, findrouter);
 app.use(`/login`, loginrouter);
 app.use(`/register`, registerrouter);
-app.use(`/main`, mainrouter);
+app.use(`/postlist`, postlistrouter);
 app.use(`/logout`, logoutrouter);
 app.use(`/post`,postrouter);
+app.use(`/mypage`,mypagerouter);
 
 app.post(`/finder`, (req,res,next)=>{
   console.log(`시발거`);

@@ -37,13 +37,13 @@ router.post(`/`, (req, res, next) => {
                     if (req.session.user) {
                         // 세션에 유저가 존재한다면
                         console.log("이미 로그인 돼있습니다~");
-                        res.redirect(`main`)
+                        res.redirect(`/`)
                       } else {
                         req.session.user = {
                           id: post.ID_login,
                           name: ans.rows[0]['name'],
                         };
-                        res.redirect(`main`)
+                        res.redirect(`/`)
                       }
                 }
                 else{

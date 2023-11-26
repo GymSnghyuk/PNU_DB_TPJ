@@ -11,9 +11,7 @@ router.get(`/`, (req, res) => {
 
       dbClient.query(querystring)
         .then((ans)=>{
-          res.render("main_view", {
-            userid:req.session.user.id,
-            username: req.session.user.name,
+          res.render("post_list", {
             posts: ans.rows,
             }); 
         })

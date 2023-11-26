@@ -39,7 +39,11 @@ function check_user_category(name,user_id,user_category){
 }
 
 router.get(`/`, (req,res)=>{
-    res.render(`register`);
+    if(req.session.user){
+        res.render(`alert`, {error: "이미 로그인 하셨습니다."})
+    }else{
+        res.render(`register`);
+    }
 })
 
 

@@ -5,16 +5,17 @@
     <nav id="menu_category" style="position: static; top: initial;">
         <ul class="top_item">
             <li><a href=""><span>프로그램</span></a></li>
-            <form action="/main" id="gotopost" method="GET">
+            <form action="/postlist" id="gotopost" method="GET">
                 <li><a href="#" onclick="return gotopost()"><span>게시판</span></a></li>
             </form>
-            <li><a href=""><span>마이페이지</span></a></li>
+            <li><a href="/mypage"><span>마이페이지</span></a></li>
         </ul>
     </nav>
     <nav id="util">
         <ul class="top_item">
             <li><a class="link_util link_reg" href="/register"><span>회원가입</span></a></li>
             <li><a class="link_util link_login" href="/login"><span>로그인</span></a></li>
+            <li><a class="link_util link_login" href="/logout"><span>로그아웃</span></a></li>
             <li>
                 <form action="/finder" method="GET" id="gotofind">
                     <a class="search_btn" href="#" onclick="return gotofind()">

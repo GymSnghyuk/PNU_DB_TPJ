@@ -15,8 +15,6 @@ router.post(`/`, (req,res,next)=>{
         body += data;
     });
 
-    console.log(">?>?>>>");
-
     req.on('end',function(){
         let post = qs.parse(body);
 
@@ -30,8 +28,16 @@ router.post(`/`, (req,res,next)=>{
         dbClient
             .query(querystring)
             .then((ans)=> {
-                console.log(ans.rows);
-                res.send(ans.rows);
+                if(ans.rowCount == 0){
+                    res.render("post_list", {
+                        posts: [{post_id : "검색어를 찾을 수 없습니다."}],
+                        });    
+                } else{
+                    res.render("post_list", {
+                        posts: ans.rows,
+                        });
+                }
+                 
             })
             .catch((e) => {
                 res.render(`alert`, {error : `오류`})

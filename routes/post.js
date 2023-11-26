@@ -10,7 +10,6 @@ router.get(`/:id`, (req, res, next)=>{
         WHERE Po.post_id = ${req.params['id']} 
             and Po.program_id = Pr.program_id;
     `
-    console.log(req.params['id']);
 
     dbClient.query(querystring)
         .then((results)=>{

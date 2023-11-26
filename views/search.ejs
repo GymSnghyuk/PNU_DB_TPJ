@@ -2,13 +2,13 @@
     <ul class="list_post">
         <% for(let post of posts) { %>
         <li class="post">
-            <a href="/post" class="link_post">
                 <span class="text_box">
                     <form action="" method="GET" id="post_frm">
-                        <span class="post_info"><a href="#" onclick="chk_form( <%=post.post_id%> )" ><%=post.post_id%> <%= post.title %> <%= post.date %></a></span>
+                        <span class="post_info">
+                            <%=post.post_id%> <a href="#" onclick="chk_form( <%=post.post_id%> )" ><%= post.title %></a><%= post.date %>
+                        </span>
                     </form>
                 </span>
-            </a>
         </li>
         <br>
         <% } %>
