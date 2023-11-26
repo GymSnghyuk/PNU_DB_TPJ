@@ -1,10 +1,5 @@
 Express 활용 nodejs 기반 데이터베이스 postgreSQL 텀프로젝트
 
-명령어 (npm)
-$ npm start
-$ npm run dev       (개발용 / nodemon) - 디버깅할땐 이거로 하자.
-$ npm run db_reset  (db 리셋)
-
 
 PNU_DB_TBJ
     L lib
