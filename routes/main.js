@@ -11,11 +11,12 @@ router.get(`/`, (req, res) => {
 
       dbClient.query(querystring)
         .then((ans)=>{
-          res.render("main_view", {
-            userid:req.session.user.id,
-            username: req.session.user.name,
-            posts: ans.rows,
-            }); 
+          res.render("index");
+          // res.render("main_view", {
+          //   userid:req.session.user.id,
+          //   username: req.session.user.name,
+          //   posts: ans.rows,
+          //   }); 
         })
         .catch((err)=>{
           console.error(err);

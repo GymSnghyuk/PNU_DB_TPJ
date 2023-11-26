@@ -141,7 +141,8 @@ body {
     background-color: rgb(21, 157, 98);
     margin-top: 20px;
 }
-/*매인 화면*/
+
+/*메인 화면*/
 ul {
     list-style:none;
     margin: 0px auto;
@@ -228,6 +229,52 @@ li {
     margin: 2px 0 0 10px;
     background-position: -492px -511px;
 }
+
+/* footer */
+#footer {
+    position: absolute;
+    z-index: 1;
+    height: 250px;
+    width: 100%;
+    border-top: 2px solid #302f30;
+    background-color: #302f30;
+    bottom: 0;
+    left: 0;
+}
+.footer_box {
+    overflow: hidden;
+    position: relative;
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+.footer_box .link_home {
+    display:inline-block;
+    width: 140px;
+    height: 28px;
+    margin: 10px 0px;
+}
+.footer_box .left {
+    width: 50%;
+    float: left;
+}
+.footer_box .right {
+    width: 50%;
+    float: right;
+}
+
+.footer_box .info {
+    width: 300px;
+}
+.footer_box .info span {
+    display: block;
+    margin-bottom: 7px;
+    padding-top: 10px;
+    font-size: 18px;
+    color: #989798;
+}
+
 @media (max-width:980px) {
     
 }

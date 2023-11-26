@@ -7,7 +7,7 @@ const dbClient = require(`../lib/db`);
 
 router.get(`/`, (req, res) => {
     if(req.session.user){
-        res.redirect(`/main`)
+        res.render(`alert`, {error : "이미 로그인 하셨습니다."})
     } else {
         res.render(`login`);
     }
