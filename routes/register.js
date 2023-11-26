@@ -67,7 +67,7 @@ router.post(`/`, (req,res,next)=>{
                     check_user_category(post.NAME_reg, post.ID_reg, post.user_category);
                 })
                 .then(()=>{
-                    res.redirect(`login`);
+                    res.redirect(`/`);
                 })
                 .catch((e) => {
                     res.render(`alert`, {error : `가입정보를 다시 확인하세요.`})
