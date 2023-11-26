@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/logout" method="post">
+        <div>
+            <input type="submit" value="로그아웃">
+        </div>
+    </form>
+    <h1>메인화면 (로그인 성공 후)</h1>
+    <h2>ID : <%=userid%></h2>
+    <h2>NAME : <%=username%></h2>
+    위에껀 그냥 디버깅 용도로 쓴거임 나중에 지우자
+    <br><br>
+    
+    <table>
+        <thead>
+        <tr>
+          <th>제목</th>
+          <th>날짜</th>
+        </tr>
+        </thead>
+        <% for(let post of posts){ %>
+        <tbody>
+          <tr>
+            <form id="post_frm" action="" method="GET">
+            <td><a href="#" onclick="chk_form( <%=post.post_id%> )" ><%= post.title %></a></td>
+            <td><%= post.date%></td>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </form>
+
+
+    <script>
+        chk_form=function(url){
+            let frm = document.getElementById('post_frm');
+            frm.action = `/post/${url}`
+            frm.submit();
+        }
+        
+    </script>
+    
+</body>
+</html>

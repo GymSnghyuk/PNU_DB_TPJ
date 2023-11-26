@@ -6,8 +6,13 @@ const dbClient = require(`../lib/db`);
 
 
 router.get(`/`, (req, res) => {
-    res.render(`login`);
+    if(req.session.user){
+        res.redirect(`/main`)
+    } else {
+        res.render(`login`);
+    }
 });
+
 
 router.post(`/`, (req, res, next) => {
     let body = ``;
@@ -20,7 +25,7 @@ router.post(`/`, (req, res, next) => {
 
         const querystring = 
             `
-            SELECT A.user_id FROM account A
+            SELECT A.user_id, A.name FROM account A
             WHERE A.user_id = '${post.ID_login}' 
                 and A.password = '${post.PW_login}';
             `;
@@ -29,8 +34,17 @@ router.post(`/`, (req, res, next) => {
             .query(querystring)
             .then((ans)=> {
                 if(ans.rowCount == 1) {
-                    res.render(`login_user`);
-                    console.log(`로그인 성공`);
+                    if (req.session.user) {
+                        // 세션에 유저가 존재한다면
+                        console.log("이미 로그인 돼있습니다~");
+                        res.redirect(`main`)
+                      } else {
+                        req.session.user = {
+                          id: post.ID_login,
+                          name: ans.rows[0]['name'],
+                        };
+                        res.redirect(`main`)
+                      }
                 }
                 else{
                     res.render(`alert`, {error : '아이디 / 비밀번호가 맞지 않음'})
@@ -42,6 +56,9 @@ router.post(`/`, (req, res, next) => {
                 console.error(e.stack)
             });
     });
+
+
+    
 });
 
 module.exports = router;
