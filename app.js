@@ -30,7 +30,7 @@ app.use(expressSession({
 
 app.use(`/script`, express.static(__dirname + "/public/javascripts"));
 app.use(`/css`, express.static(__dirname + "/public/stylesheets"));
-app.use(`/image`, express.static(__dirname + "/public/images"));
+app.use(`/img`, express.static(__dirname + "/public/images"));
 
 
 app.use(`/`, indexrouter);
