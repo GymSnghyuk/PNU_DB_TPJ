@@ -7,6 +7,7 @@ const registerrouter = require(`./routes/register`);
 const mainrouter = require(`./routes/main`);
 const logoutrouter = require(`./routes/logout`);
 const postrouter = require(`./routes/post`);
+const findrouter = require(`./routes/finder`);
 
 
 const app = express();
@@ -34,11 +35,17 @@ app.use(`/img`, express.static(__dirname + "/public/images"));
 
 
 app.use(`/`, indexrouter);
+app.use(`/finder`, findrouter);
 app.use(`/login`, loginrouter);
 app.use(`/register`, registerrouter);
 app.use(`/main`, mainrouter);
 app.use(`/logout`, logoutrouter);
 app.use(`/post`,postrouter);
+
+app.post(`/finder`, (req,res,next)=>{
+  console.log(`시발거`);
+  res.render(`index`)
+})
 
 app.listen(app.get('port'), () => {
   console.log(`Example app listening on port ${app.get('port')}`);
