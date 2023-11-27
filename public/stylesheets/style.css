@@ -60,8 +60,8 @@ body {
     box-sizing: border-box;
     margin-bottom: 16px;
     border-radius: 6px;
-    font-size: 24px;
-    background-color: rgb(21, 157, 98);
+    font-size: 20px;
+    background-color: #989798;
     margin-top: 20px;
 }
 /* 회원가입 화면 */
@@ -142,7 +142,7 @@ body {
     margin-top: 20px;
 }
 
-/*메인 화면*/
+/* header */
 ul {
     list-style:none;
     margin: 0px auto;
