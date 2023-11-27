@@ -4,7 +4,11 @@ const qs = require(`querystring`);
 const dbClient = require(`../lib/db`);
 
 router.get(`/`, (req,res,next)=>{
-    res.render(`finder`);
+    if(req.session.user){
+        res.render(`finder`);
+    } else{
+        res.render(`alert`, {error: "로그인 후 이용하세요."});
+    }
 })
 
 //검색단어 입력 후 검색버튼 누르면
