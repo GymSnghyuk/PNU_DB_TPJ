@@ -32,7 +32,10 @@ router.post(`/`, (req,res,next)=>{
         dbClient
             .query(querystring)
             .then((ans)=> {
-                if(ans.rowCount == 0){
+                if(post.findkey=null){
+                    res.render("alert", {error:"검색어를 입력하세요."});
+                }
+                else if(ans.rowCount == 0){
                     res.render("post_list", {
                         posts: [{post_id : "검색어를 찾을 수 없습니다."}],
                         });    

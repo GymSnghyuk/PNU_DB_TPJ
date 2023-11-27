@@ -12,8 +12,6 @@ PNU_DB_TBJ
     L routes : 라우터
     L views : views - ejs파일 형식
 
-    
-
 
 
 postgreSQL 설정
