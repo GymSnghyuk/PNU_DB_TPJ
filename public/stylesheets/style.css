@@ -297,6 +297,58 @@ li {
     background-color: #fff;
     vertical-align: bottom;
 }
+
+/* 검색창 */
+.search_wrap {
+    padding: 0;
+    padding-top: 75px;
+}
+.search_wrap .search_form {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+}
+.search_wrap .search_box {
+    position: relative;
+    height: 70px;
+    padding: 0 70px;
+    border-radius: 35px;
+    background-color: #f7f8f9;
+}
+.search_wrap .input_search {
+    width: 100%;
+    height: 30px;
+    margin-top: 20px;
+    font-size: 30px;
+    line-height: 36px;
+    color: #444;
+    background-color: initial;
+    outline: none;
+}
+.btn_delete {
+    position: absolute;
+    right: 26px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+}
+.ico_delete {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.ico_delete img {
+    width: 100%;
+}
+.wrap_search .btn_search {
+    position: absolute;
+    top: 22px;
+    left: 28px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
 @media (max-width:980px) {
     
 }
