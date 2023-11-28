@@ -141,7 +141,24 @@ body {
     background-color: rgb(21, 157, 98);
     margin-top: 20px;
 }
-
+.hidden_content {
+    font-size: 24px;
+}
+#disabled_id, #parent_select, #parent_id, #center_id, #center_address, #teacher_id, #normal_user_id {
+    width: 60%;
+    height: 60px;
+    margin-left: 20%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 24px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: rgb(232, 231, 231);
+}
+#is_parent {
+    font-size: 24px;
+    margin-left: 20%;
+}
 /* header */
 ul {
     list-style:none;
