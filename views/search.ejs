@@ -1,16 +1,23 @@
 <div class="post_group">
-    <ul class="list_post">
-        <% for(let post of posts) { %>
-        <li class="post">
-                <span class="text_box">
-                    <form action="" method="GET" id="post_frm">
-                        <span class="post_info">
-                            <%=post.post_id%> <a href="#" onclick="chk_form( <%=post.post_id%> )" ><%= post.title %></a><%= post.date %>
-                        </span>
-                    </form>
-                </span>
-        </li>
-        <br>
-        <% } %>
-    </ul>
+    <table class="post_table">
+        <thead id="post_head">
+            <tr>
+                <th>Post ID</th>
+                <th>Title</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% for(let post of posts) { %>
+                <form action="" method="GET" id="post_frm">
+                    <tr>
+                    <td><%= post.post_id %></td>
+                    <td><a href="#" onclick="chk_form( <%=post.post_id%> )" ><%= post.title %></a></td>
+                    <td><%= post.date %></td>
+                    </tr>
+                </form>
+            <% } %>
+        </tbody>
+    </table>
 </div>

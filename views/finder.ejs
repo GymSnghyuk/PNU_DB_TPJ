@@ -9,20 +9,33 @@
 <body>
     <%- include('top.ejs') %>
     <div class="search_wrap">
-        <form id="finderid" action="/finder" class="search_form" method="POST" >
+        <form id="finderid" action="/finder" class="search_form" name="search_form" method="POST" >
             <div class="search_box">
-                <input type="text" placeholder="검색어를 입력하세요" name="findkey" class="input_search">
+                <input type="text" placeholder="검색어를 입력하세요" name="findkey" class="input_search" id="input_search">
             </div>
             <a class="btn_delete" onclick="search_delete()">
                 <span class="ico_delete">
                     <img src="/img/ico_delete_01.svg">
                 </span>
             </a>
-            <button class="btn_search" type="submit">검색</button>
+            <a class="btn_search" onclick="program_search(search_form)">
+                <span class="ico_search">
+                    <img src="/img/search_icon.svg">
+                </span>
+            </a>
         </form>
     </div>
     <footer>
         <%- include('footer.ejs') %>
     </footer>
+    <script type="text/javascript">
+        function search_delete(){
+            var inputBox = document.getElementById("input_search");
+            inputBox.value = null;
+        }
+        function program_search(sf) {
+            sf.submit();
+        }
+    </script>
 </body>
 </html>
