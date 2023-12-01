@@ -44,10 +44,6 @@ app.use(`/logout`, logoutrouter);
 app.use(`/post`,postrouter);
 app.use(`/mypage`,mypagerouter);
 
-app.post(`/finder`, (req,res,next)=>{
-  console.log(`시발거`);
-  res.render(`index`)
-})
 
 app.listen(app.get('port'), () => {
   console.log(`Example app listening on port ${app.get('port')}`);
