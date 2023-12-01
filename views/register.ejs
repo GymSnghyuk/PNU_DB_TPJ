@@ -28,16 +28,16 @@
             </div>
             <div class="category_select">
                 <label for="user_category" id="category">유저 카테고리 </label> <br>
-                <label><input type="radio" name="user_category" id="user_category_1" value="1">장애인</label>
-                <label><input type="radio" name="user_category" id="user_category_2" value="2">보호자</label>
-                <label><input type="radio" name="user_category" id="user_category_3" value="3">센터</label>
-                <label><input type="radio" name="user_category" id="user_category_4" value="4">강사</label>
-                <label><input type="radio" name="user_category" id="user_category_5" value="0">일반 사용자</label>
+                <label><input type="radio" name="user_category" id="user_category_1" value="1" onclick="checked_category(this.value)">장애인</label>
+                <label><input type="radio" name="user_category" id="user_category_2" value="2" onclick="checked_category(this.value)">보호자</label>
+                <label><input type="radio" name="user_category" id="user_category_3" value="3" onclick="checked_category(this.value)">센터</label>
+                <label><input type="radio" name="user_category" id="user_category_4" value="4" onclick="checked_category(this.value)">강사</label>
+                <label><input type="radio" name="user_category" id="user_category_5" value="5" onclick="checked_category(this.value)">일반 사용자</label>
                 
             </div>
             <div class="hidden_content" id="content_1" style="display: none;">
-                <input name="disabled_id" id="disabled_id" placeholder="disabled id">
-                <label for="parent_select" id="is_parent"> 보호자 유무 </label>
+                <input name="disabled_id" id="disabled_id" placeholder="disabled id"> <br>
+                <label for="parent_select" id="is_parent"> 보호자 유무 </label> <br>
                 <select name="parent_select" id="parent_select">
                     <option value="true">예</option>
                     <option value="false">아니오</option>
@@ -79,18 +79,14 @@
                 content.style.display = 'none';
             });
         }
-        var radioButtons = document.querySelectorAll('input[type="radio"][name="user_category"]');
-        radioButtons.forEach(function(radio) {
+        function checked_category(value) {
             hideAllcontent();
-
-            var selectedCategory = this.value;
-            var contentId = 'content_' + selectedCategory;
+            var contentId = 'content_' + value;
             var selectedContent = document.getElementById(contentId);
-
             if(selectedContent) {
                 selectedContent.style.display = 'block';
             }
-        })
+        }
     </script>
 </body>
 </html>

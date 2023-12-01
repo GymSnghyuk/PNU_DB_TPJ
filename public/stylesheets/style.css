@@ -141,7 +141,24 @@ body {
     background-color: rgb(21, 157, 98);
     margin-top: 20px;
 }
-
+.hidden_content {
+    font-size: 24px;
+}
+#disabled_id, #parent_select, #parent_id, #center_id, #center_address, #teacher_id, #normal_user_id {
+    width: 60%;
+    height: 60px;
+    margin-left: 20%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 24px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: rgb(232, 231, 231);
+}
+#is_parent {
+    font-size: 24px;
+    margin-left: 20%;
+}
 /* header */
 ul {
     list-style:none;
@@ -235,7 +252,7 @@ li {
 #footer {
     position: absolute;
     z-index: 1;
-    height: 250px;
+    height: 200px;
     width: 100%;
     border-top: 2px solid #302f30;
     background-color: #302f30;
@@ -255,6 +272,9 @@ li {
     width: 140px;
     height: 28px;
     margin: 10px 0px;
+}
+.footer_box .link_home :visited {
+    color: #fff;
 }
 .footer_box .left {
     width: 50%;
@@ -341,13 +361,66 @@ li {
 .ico_delete img {
     width: 100%;
 }
-.wrap_search .btn_search {
+.search_wrap .btn_search {
     position: absolute;
     top: 22px;
     left: 28px;
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+.search_wrap .ico_search {
+	display: block;
+    overflow: hidden;
+    width: 25px;
+    height: 25px;
+}
+.search_wrap .ico_search img {
+	width: 100%;
+	height: 100%;	
+}
+/* program-list */
+.submit_button {
+    position: absolute;
+    width: 100px;
+    right: 12%;
+    margin-top: 80px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 5px;
+    transition: all 0.2s ; 
+} 
+.post_group {
+    position: absolute;
+    max-height: 600px;
+    overflow-y: scroll;
+    margin-top: 5em;
+}
+.post_table {
+    border: 1px #a39485 solid;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.5);
+    width: 80%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.post_table th {
+    text-align: left;
+}
+#post_head {
+    font-weight: bold;
+    color: #fff;
+    background-color: rgb(21, 157, 98);
+}
+.post_table td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background-color: #fff;
+}
+.post_table td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
 }
 @media (max-width:980px) {
     
