@@ -25,7 +25,7 @@ router.post(`/`, (req, res, next) => {
 
         const querystring = 
             `
-            SELECT A.user_id, A.name FROM account A
+            SELECT A.user_id, A.name, A.user_category FROM account A
             WHERE A.user_id = '${post.ID_login}' 
                 and A.password = '${post.PW_login}';
             `;
@@ -42,6 +42,7 @@ router.post(`/`, (req, res, next) => {
                         req.session.user = {
                           id: post.ID_login,
                           name: ans.rows[0]['name'],
+                          category: ans.rows[0][`user_category`],
                         };
                         res.redirect(`/`)
                       }

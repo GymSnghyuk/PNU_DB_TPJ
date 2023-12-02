@@ -7,10 +7,12 @@
 </head>
 <body>
     <div id="wrap_write">
-        <input type="text" name="title" id="write_title">
-        <input type="text" name="content" id="write_content">
-        <input type="text" name="date" id="write_date">
-        <button type="submit" id="submit_button" class="submit_button">등록하기</button>
+        <form action="/write" method="post">
+            <input type="text" name="title" id="write_title">
+            <input type="text" name="content" id="write_content">
+            <input type="text" name="date" id="write_date">
+            <button type="submit" id="submit_button" class="submit_button">등록하기</button>
+        </form>
     </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ const logoutrouter = require(`./routes/logout`);
 const postrouter = require(`./routes/post`);
 const findrouter = require(`./routes/finder`);
 const mypagerouter = require(`./routes/mypage`);
+const writepostrouter = require(`./routes/writepost`);
 
 
 const app = express();
@@ -43,7 +44,7 @@ app.use(`/postlist`, postlistrouter);
 app.use(`/logout`, logoutrouter);
 app.use(`/post`,postrouter);
 app.use(`/mypage`,mypagerouter);
-
+app.use(`/write`, writepostrouter);
 
 app.listen(app.get('port'), () => {
   console.log(`Example app listening on port ${app.get('port')}`);
