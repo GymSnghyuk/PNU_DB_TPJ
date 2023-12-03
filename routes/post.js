@@ -22,11 +22,11 @@ router.get(`/:id`,async (req, res, next)=>{
             });
 
 
-            const querystring = `
-                SELECT *
-                FROM program
-                WHERE program_id = ${req.params['id']} ;
-            `
+        const querystring = `
+            SELECT *
+            FROM program
+            WHERE program_id = ${req.params['id']} ;
+        `
 
         dbClient.query(querystring)
             .then((results)=>{
@@ -40,6 +40,7 @@ router.get(`/:id`,async (req, res, next)=>{
                     post_count_max : post_data['count_max'],
                     post_count : post_data['count'],
                     post_date : post_data['date'],
+                    post_id : post_data['program_id'],
                 });
             })
             .catch((err)=>{

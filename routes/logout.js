@@ -9,7 +9,6 @@ router.get(`/`, (req, res, next)=>{
         });
     } else{
         res.render("alert", {error:"이미 로그아웃 상태입니다."});
-
     }
     
 })

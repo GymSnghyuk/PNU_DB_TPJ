@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>신청하는 페이지</h1>
+    <form action="/ticketing/<%=post_id%>" method="post">
+        <%=count_current%>  / <%=count_max%>
+        <br>
+        <input type="text" name="howmany" placeholder="인원 수">
+        <br>
+        <input type="submit" value="신청하기">
+    </form>
+</body>
+</html>

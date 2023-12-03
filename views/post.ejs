@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <%- include('top.ejs') %>
+    <br><br><br><br><br><br><br>
     <h1>게시글 제목 : <%=post_title%></h1>
     <br><br>
     <h2>게시날짜 : <%=post_date%></h2>
@@ -15,6 +18,19 @@
     <h2>게시글 내용 : <%=post_content%></h2>
     <h2>최대 인원 : <%=post_count_max%></h2>
     <h2>현재 인원 : <%=post_count%></h2>
-    
+    <form action="/ticketing" method="GET" id="ticketing_frm">
+        <button onclick="chk_form(<%=post_id%>)">신청하기</button>
+    </form>
+    <footer>
+        <%- include('footer.ejs') %>
+      </footer>
+      <script>
+        chk_form=function(url){
+            let frm = document.getElementById('ticketing_frm');
+            frm.action = `/ticketing/${url}`
+            frm.submit();
+        }
+        
+    </script>
 </body>
 </html>

@@ -10,6 +10,7 @@ const postrouter = require(`./routes/post`);
 const findrouter = require(`./routes/finder`);
 const mypagerouter = require(`./routes/mypage`);
 const writepostrouter = require(`./routes/writepost`);
+const ticketingrouter = require(`./routes/ticketing`);
 
 
 const app = express();
@@ -45,6 +46,7 @@ app.use(`/logout`, logoutrouter);
 app.use(`/post`,postrouter);
 app.use(`/mypage`,mypagerouter);
 app.use(`/write`, writepostrouter);
+app.use(`/ticketing`, ticketingrouter )
 
 app.listen(app.get('port'), () => {
   console.log(`Example app listening on port ${app.get('port')}`);
