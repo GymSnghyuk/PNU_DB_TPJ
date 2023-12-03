@@ -8,9 +8,16 @@
 <body>
     <div id="wrap_write">
         <form action="/write" method="post">
-            <input type="text" name="title" id="write_title">
-            <input type="text" name="content" id="write_content">
-            <input type="text" name="date" id="write_date">
+            제목<input type="text" name="title" id="write_title">
+            <br>
+            카테고리<input type="text" name="category" id="write_category">
+            <br>
+            내용<input type="text" name="content" id="write_content">
+            <br>
+            프로그램 진행 날짜<input type="text" name="date" id="write_date">
+            <br>
+            최대 인원 수<input type="text" name="count_max" id="write_count_max">
+            <br>
             <button type="submit" id="submit_button" class="submit_button">등록하기</button>
         </form>
     </div>

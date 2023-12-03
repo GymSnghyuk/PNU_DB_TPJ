@@ -1,12 +1,11 @@
 const dbClient = require('../../lib/db')
 
+let rn = {}
 
-let rp = {}
+rn.normal_register = async function (user_id){
 
-rp.parent_register = async function (user_id){
-    
     querystring = `
-        INSERT INTO parent(user_id)
+        INSERT INTO normal(user_id)
          values ('${user_id}');
     `
 
@@ -21,4 +20,4 @@ rp.parent_register = async function (user_id){
         })
 }
 
-module.exports = rp;
+module.exports = rn;

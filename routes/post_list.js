@@ -5,8 +5,8 @@ const dbClient = require(`../lib/db`);
 router.get(`/`, (req, res) => {
     if (req.session.user) {
       const querystring = `
-        SELECT title, content, date, post_id
-        FROM post;
+        SELECT title, content, date, program_id
+        FROM program;
       `
 
       dbClient.query(querystring)

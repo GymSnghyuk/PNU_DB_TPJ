@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const dbClient = require(`../lib/db`);
 const qs = require(`querystring`);
-const id_num_min = require(`./register_category/id_num_min`);
 
 router.get(`/`, (req, res, next)=>{
-    res.render(`write`);
+    if(req.session.user.category == 4 || req.session.user.category == 0){
+        res.render(`write`);        
+    } else{
+        res.render(`alert`, {error: "게시 권한이 없습니다."});
+    }
 })
 
 router.post(`/`, (req, res, next) => {
@@ -15,17 +18,33 @@ router.post(`/`, (req, res, next) => {
     });
 
     req.on('end',async function(){
-        if(req.session.user.category == 0){
+        if(req.session.user.category == 4 || req.session.user.category == 0){
             let post = qs.parse(body);
-            const postid = await id_num_min.GET_ID_NUM(`post`) +1;
             const userid = req.session.user.id;
             const name = req.session.user.name;
-            
+
+            const find_teacher_id_query = `
+                SELECT teacher_id
+                FROM teacher
+                WHERE user_id = '${userid}';
+            `;
+
+            let teacher_id;
+            await dbClient.query(find_teacher_id_query)
+                .then((results)=>{
+                    teacher_id = results.rows[0].teacher_id;
+                })
+                .catch((err)=>{
+                    console.error(err);
+                    res.render(`alert`, {error: `오류 : teacher_id를 찾지 못함`});
+                });
+
             const querystring = `
-                insert into post values (${postid},1, '${post.title}','${post.content}' ,'${post.date}','9:00');
+                insert into program (teacher_id, category, title, content, count_max, date)
+                values (${teacher_id},'${post.category}', '${post.title}','${post.content}',${post.count_max},'${post.date}');
             `;
     
-            dbClient.query(querystring)
+            await dbClient.query(querystring)
                 .then((results)=>{
                     res.redirect(`/postlist`);
                 })

@@ -8,6 +8,7 @@ const rd = require(`./register_category/register_disabled`);
 const rp = require(`./register_category/register_parent`);
 const rc = require(`./register_category/register_center`);
 const rt = require(`./register_category/register_teacher`);
+const rn = require(`./register_category/register_normal`);
 
 router.use(cookieParser());
 
@@ -20,20 +21,24 @@ router.use(
   })
 );
 
-function check_user_category(name,user_id,user_category){
+function check_user_category(user_id,user_category){
     if(user_category == 1){
         console.log(`장애인`);
-        rd.disabled_register(name, false, false, `축구`, `왼팔장애`, user_id)
+        rd.disabled_register(false, false, `축구`, `왼팔장애`, user_id)
     } else if(user_category == 2){
         console.log("보호자");
-        rp.parent_register(name,user_id);
+        rp.parent_register(user_id);
     } else if(user_category == 3){
         console.log("센터");
-        rc.center_register(name,"부산시 금정구",user_id);
+        rc.center_register("부산시 금정구",user_id);
     } else if(user_category == 4){
         console.log("강사");
-        rt.teacher_register(name, user_id);
-    } else {
+        rt.teacher_register(user_id);
+    } else if(user_category == 5){
+        console.log("일반사용자");
+        rn.normal_register(user_id);
+    }
+    else{
         console.log("잘못 입력됨");
     }
 }
@@ -68,7 +73,7 @@ router.post(`/`, (req,res,next)=>{
                     console.log(querystring);
                 })
                 .then(()=>{
-                    check_user_category(post.NAME_reg, post.ID_reg, post.user_category);
+                    check_user_category(post.ID_reg, post.user_category);
                 })
                 .then(()=>{
                     res.redirect(`/`);

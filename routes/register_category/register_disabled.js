@@ -1,14 +1,13 @@
 const dbClient = require('../../lib/db')
-const get_id_num = require('./id_num_min')
+
 
 let rd = {}
 
-rd.disabled_register = async function (name, is_parent, is_center, hobby, kind_of_disabled, user_id){
-    const disabled_id = await get_id_num.GET_ID_NUM('disabled')+1;
+rd.disabled_register = async function (is_parent, is_center, hobby, kind_of_disabled, user_id){
     
     querystring = `
-        INSERT INTO disabled values (${disabled_id}, '${name}', ${is_parent},
-        ${is_center}, '${hobby}', '${kind_of_disabled}', '${user_id}');
+        INSERT INTO disabled (is_parent, is_center, hobby, kind_of_disabled, user_id)
+            values (${is_parent}, ${is_center}, '${hobby}', '${kind_of_disabled}', '${user_id}');
     `
 
     dbClient
@@ -18,7 +17,7 @@ rd.disabled_register = async function (name, is_parent, is_center, hobby, kind_o
         })
         .catch((e) =>{
             console.error(e.stack)
-            console.log(`register complete. but cannot insert into disabled`)
+           
         })
 }
 
