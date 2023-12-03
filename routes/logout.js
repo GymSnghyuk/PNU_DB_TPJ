@@ -5,7 +5,7 @@ router.get(`/`, (req, res, next)=>{
     if(req.session.user){
         req.session.destroy(err => {
             if (err) throw err;
-            res.render("alert",{error: "로그아웃되었습니다."}); // 웹페이지 강제 이동 
+            res.redirect(`/`); 
         });
     } else{
         res.render("alert", {error:"이미 로그아웃 상태입니다."});
