@@ -19,29 +19,34 @@
         종류 : <%=user_category%>
     </h1>
     <h1>
-        신청목록
+        <%=hidden_ticketing%>
     </h1>
-    <% for(let post of posts) { %>
+    
         <table>
             <thead>
                 <th>제목</th>
                 <th>신청인원</th>
                 <th>프로그램 운영 일시</th>
+                <th></th>
             </thead>
+            <% for(let post of posts) { %>
             <tbody>
                 <tr>
                     <td><%= post.title %></td>
                     <td><%= post.howmany %></td>
                     <td><%= post.date %></td>
+                    <td>
+                        <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
+                            <button type="submit" name="cancel" ><%=cancel_hidden%></button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
+            <% } %>
         </table>
-        <form action="" method="GET" id="post_frm">
-           
-        </form>
-    <% } %>
     <footer>
       <%- include('footer.ejs') %>
     </footer>
+
 </body>
 </html>

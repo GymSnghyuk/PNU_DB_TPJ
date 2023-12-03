@@ -14,7 +14,7 @@ rc.center_register = async function (address, user_id){
         })
         .catch((e) =>{
             console.error(e.stack)
-            console.log(`register complete. but cannot insert into disabled`)
+
         })
 }
 

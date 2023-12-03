@@ -5,40 +5,44 @@ const qs = require(`querystring`);
 
 router.get(`/:id`, async (req, res, next)=>{
     if(req.session.user){
-        const check_ticketing = `
-            SELECT *
-            FROM ticketing
-            WHERE program_id = ${req.params.id}
-                and user_id = '${req.session.user.id}';
-        `;
-
-        let check;
-        await dbClient.query(check_ticketing)
-            .then((results)=>{
-                check = results.rowCount;
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
-        
-        if(check==0){
-            const querystring = `
-                SELECT count, count_max
-                FROM program
-                WHERE program_id = ${req.params.id};
+        if(req.session.user.category != 4 && req.session.user.category != 5){
+            const check_ticketing = `
+                SELECT *
+                FROM ticketing
+                WHERE program_id = ${req.params.id}
+                    and user_id = '${req.session.user.id}';
             `;
 
-            dbClient.query(querystring)
+            let check;
+            await dbClient.query(check_ticketing)
                 .then((results)=>{
-                    res.render(`ticketing`,
-                        {count_current : results.rows[0].count, 
-                        count_max : results.rows[0].count_max,
-                        post_id : req.params.id});
+                    check = results.rowCount;
                 })
-        } else{
-            res.render(`alert`, {error: "이미 신청한 프로그램입니다."});
+                .catch((err)=>{
+                    console.error(err);
+                })
+            
+            if(check==0){
+                const querystring = `
+                    SELECT count, count_max
+                    FROM program
+                    WHERE program_id = ${req.params.id};
+                `;
+
+                dbClient.query(querystring)
+                    .then((results)=>{
+                        res.render(`ticketing`,
+                            {count_current : results.rows[0].count, 
+                            count_max : results.rows[0].count_max,
+                            post_id : req.params.id});
+                    })
+            } else{
+                res.render(`alert`, {error: "이미 신청한 프로그램입니다."});
+            }
         }
-        
+        else{
+            res.render(`alert`, {error: "신청할 수 없는 사용자 입니다."})
+        }
 
     } else{
         res.render("alert", {error:"로그인 정보를 찾을 수 없습니다. 다시 로그인해주세요."});
@@ -87,6 +91,40 @@ router.post(`/:id`, (req, res, next)=>{
     }
     else{
         res.render(`alert`, {error: "로그인 정보를 찾을 수 없습니다. 다시 로그인해주세요."});
+    }
+});
+
+router.post(`/delete/:pid/:howmany`, async (req,res,next)=>{
+    if(req.session.user){
+        const cancelquery = `
+            UPDATE program 
+            SET count=count - ${req.params.howmany}
+            WHERE program_id = ${req.params.pid};
+        `;
+
+        await dbClient.query(cancelquery)
+            .then((results)=>{
+                console.log(`count 감소 성공`)
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        const querystring = `
+            DELETE FROM ticketing
+            WHERE program_id = ${req.params.pid}
+                and user_id = '${req.session.user.id}'
+        `;
+
+        await dbClient.query(querystring)
+            .then((results)=>{
+                console.log(`DELETE 성공`);
+                res.redirect(`/mypage`);
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+    } else{
+        res.render(`alert`, {error : "로그인 정보 확인 불가"});
     }
 })
 
