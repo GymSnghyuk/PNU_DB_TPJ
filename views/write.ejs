@@ -8,20 +8,8 @@
 </head>
 <body>
     <%- include('top.ejs') %>
-    <div id="wrap_write">
+    <div class="wrap_write">
         <form action="/write" method="post">
-            제목<input type="text" name="title" id="write_title">
-            <br>
-            카테고리<input type="text" name="category" id="write_category">
-            <br>
-            내용<input type="text" name="content" id="write_content">
-            <br>
-            프로그램 진행 날짜<input type="text" name="date" id="write_date">
-            <br>
-            최대 인원 수<input type="text" name="count_max" id="write_count_max">
-            <br>
-            <button type="submit" id="submit_button2" class="submit_button2">등록하기</button>
-        
         <table class="write_main">
             <tr>
                 <td colspan="3">
@@ -33,7 +21,7 @@
             <tr class="tr_oneLine">
                 <th><span>프로그램 제목</span></th>
                 <td colspan="2">
-                    <div class="write_program_title">
+                    <div class="bottom_line">
                         <input type="text" id="wirte_title" name="title" placeholder="제목을 입력해주세요">
                     </div>
                 </td>
@@ -41,8 +29,8 @@
             <tr class="tr_oneLine">
                 <th><span>진행 날짜</span></th>
                 <td colspan="2">
-                    <div class="write_date">
-                        <input type="text" name="date" id="date" placeholder="날짜를 입력해주세요">
+                    <div class="bottom_line">
+                        <input type="date" name="date" id="date" min="2023-01-01" max="2033-12-31" value="2023-12-12">
                     </div>
                 </td>
             </tr>
@@ -68,8 +56,8 @@
             <tr class="tr_oneLine">
                 <th><span>최대 인원 수</span></th>
                 <td colspan="2">
-                    <div class="write_count_max">
-                        <input type="text" id="count_max" name="count_max" placeholder="최대 등록 인원 수를 입력하세요">
+                    <div class="bottom_line">
+                        <input type="text" id="count_max" name="count_max" placeholder="최대 등록 인원 수를 숫자만 입력하세요">
                     </div>
                 </td>
             </tr>
