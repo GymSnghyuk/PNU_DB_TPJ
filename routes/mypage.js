@@ -84,4 +84,34 @@ router.get(`/`, async (req,res,next)=>{
     
 })
 
+router.get(`/disabled/:category/:id`,(req, res, next)=>{
+    if(req.session.user){
+        const category = req.params.category;
+        const userid = req.params.id;
+        
+        if(category == 2){
+            const find_parent_id_query = `
+                with pid as (
+                    SELECT parent_id
+                    FROM parent
+                    WHERE user_id = '${userid}'    
+                )
+                SELECT disabled_id
+                FROM relationship R, pid P
+                WHERE R.parent_id = P.parent_id;
+            `;
+
+            dbClient.query(find_parent_id_query)
+                    .then((results)=>{
+                        console.log(results.rows);
+                        res.render(`alert`, {error: results.rows})
+                    })
+
+        } else if(category == 3){
+            //센터
+        }
+    }
+
+})
+
 module.exports = router;

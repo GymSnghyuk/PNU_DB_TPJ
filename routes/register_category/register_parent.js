@@ -17,7 +17,7 @@ rp.parent_register = async function (user_id, dis_data){
         })
         .catch((e) =>{
             console.error(e.stack)
-        })
+        });
 
         const parentid_query = `
             SELECT max(parent_id)

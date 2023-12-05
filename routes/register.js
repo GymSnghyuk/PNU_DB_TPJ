@@ -12,13 +12,14 @@ const rn = require(`./register_category/register_normal`);
 async function check_user_category(post){
     if(post.user_category == 1){
         console.log(`장애인`);
-        rd.disabled_register(post.is_parent, post.is_center, post.what_hobby, post.what_disabled, post.user_id)
+        rd.disabled_register(false, false, post.what_hobby, post.what_disabled, post.ID_reg)
     } else if(post.user_category == 2){
         console.log("보호자");
         let dis_data=[];
-        for(let i=0; i<post.count_parent; ++i){
+        for(let i=0; i<post.count_parent+1; ++i){
             dis_data.push(post[`disabled_parent_${i}`]);
         };
+        console.log(dis_data);
         rp.parent_register(post.ID_reg, dis_data);
     } else if(post.user_category == 3){
         console.log("센터");

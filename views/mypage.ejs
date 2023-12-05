@@ -22,31 +22,43 @@
         <%=hidden_ticketing%>
     </h1>
     
-        <table>
-            <thead>
-                <th>제목</th>
-                <th>신청인원</th>
-                <th>프로그램 운영 일시</th>
-                <th></th>
-            </thead>
-            <% for(let post of posts) { %>
-            <tbody>
-                <tr>
-                    <td><%= post.title %></td>
-                    <td><%= post.howmany %></td>
-                    <td><%= post.date %></td>
-                    <td>
-                        <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
-                            <button type="submit" name="cancel" ><%=cancel_hidden%></button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-            <% } %>
-        </table>
+    <table>
+        <thead>
+            <th>제목</th>
+            <th>신청인원</th>
+            <th>프로그램 운영 일시</th>
+            <th></th>
+        </thead>
+        <% for(let post of posts) { %>
+        <tbody>
+            <tr>
+                <td><%= post.title %></td>
+                <td><%= post.howmany %></td>
+                <td><%= post.date %></td>
+                <td>
+                    <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
+                        <button type="submit" name="cancel" ><%=cancel_hidden%></button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+        <% } %>
+    </table>
+
+    <form action="/mypage/disabled/<%=user_category%>/<%=id%>" method="get" id="">
+        <input type="submit" value="연결된 disabled 보기" id="connect_disabled">
+    </form>
+
+
     <footer>
       <%- include('footer.ejs') %>
     </footer>
 
+    <script>
+        // 2 보호자이거나, 3 센터일 경우
+        if(<%=user_category%> != 2 && <%=user_category%> != 3){
+            document.getElementById("connect_disabled").style.display="none";
+        }
+    </script>
 </body>
 </html>

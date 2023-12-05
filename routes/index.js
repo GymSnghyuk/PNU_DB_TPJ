@@ -16,7 +16,8 @@ router.get(`/`, (req, res) => {
                 )
                 SELECT P.program_id, P.date, P.title
                 FROM program P, dis_hobby D
-                WHERE P.category = D.hobby;
+                WHERE P.category = D.hobby
+                ORDER BY P.program_id;
             `;
 
             dbClient.query(querystring)

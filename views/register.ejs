@@ -108,12 +108,12 @@
 
         let count_parent=0;
         const add_textbox_p = () => {
-            count_center++;
+            count_parent++;
             const box = document.getElementById("parent_disabled");
             const newP = document.createElement('p');
-            newP.innerHTML = `<input type='text' name=disabled_parent_${count_center} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove(this)'>`;
+            newP.innerHTML = `<input type='text' name=disabled_parent_${count_parent} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove(this)'>`;
             box.appendChild(newP);
-            document.getElementById("count_disabled").value=count_center+1;
+            document.getElementById("count_disabled").value=count_parent+1;
         }
 
 
@@ -128,9 +128,9 @@
         }
 
         const remove_p = (obj) => {
-            count_center--;
+            count_parent--;
             document.getElementById('parent_disabled').removeChild(obj.parentNode);
-            document.getElementById("count_disabled").value=count_center+1;
+            document.getElementById("count_disabled").value=count_parent+1;
         }
 
         const remove = (obj) => {
