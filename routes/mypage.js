@@ -104,7 +104,7 @@ router.get(`/disabled/:category/:id`,(req, res, next)=>{
             dbClient.query(find_parent_id_query)
                     .then((results)=>{
                         console.log(results.rows);
-                        res.render(`alert`, {error: results.rows})
+                        res.render(`disabled`,{posts: results.rows})
                     })
 
         } else if(category == 3){

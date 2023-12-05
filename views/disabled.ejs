@@ -6,6 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="post_group">
+        <table class="post_table">
+            <thead id="post_head">
+                <tr>
+                    <th>Post ID</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <% for(let post of posts) { %>
+                    <form action="" method="GET" id="post_frm">
+                        <tr>
+                        <td><%= post.disabled_id %></td>
+                    <!-- <td><a href="#" onclick="chk_form( <%=post.program_id%> )" ><%= post.title %></a></td> -->
+                        </tr>
+                    </form>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
