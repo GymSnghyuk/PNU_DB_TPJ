@@ -17,7 +17,7 @@ PNU_DB_TBJ
 postgreSQL 설정
 1. postgres=# CREATE USER KL_db2023 WITH ENCRYPTED PASSWORD 'dis2023!';
 2. postgres=# CREATE TABLESPACE tspace_db2023 OWNER KL_db2023 LOCATION '테이블스페이스 경로';
-3. postgres=# CREATE DATABASE disabled2023 OWNER KL_db2023 TABLESPACE ts_db2023 ;
+3. postgres=# CREATE DATABASE disabled2023 OWNER KL_db2023 TABLESPACE tspace_db2023 ;
 
 VScode에서 postgres 작업하기
 1. extend 에서 postgreSQL 설치
