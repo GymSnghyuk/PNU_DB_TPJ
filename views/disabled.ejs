@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
 </head>
 <body>
@@ -10,9 +11,8 @@
         <table class="post_table">
             <thead id="post_head">
                 <tr>
-                    <th>Post ID</th>
-                    <th>Title</th>
-                    <th>Date</th>
+                    <th>ID</th>
+                    <th>Disabled 이름</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +20,9 @@
                 <% for(let post of posts) { %>
                     <form action="" method="GET" id="post_frm">
                         <tr>
-                        <td><%= post.disabled_id %></td>
+                        
+                        <td><%= post.user_id %></td>
+                        <td><%= post.name %></td>
                     <!-- <td><a href="#" onclick="chk_form( <%=post.program_id%> )" ><%= post.title %></a></td> -->
                         </tr>
                     </form>
