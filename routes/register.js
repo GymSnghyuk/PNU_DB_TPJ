@@ -2,41 +2,34 @@ const express = require('express');
 const router = express.Router();
 const dbClient = require(`../lib/db`);
 const qs = require(`querystring`);
-const cookieParser = require("cookie-parser");
-const expressSession = require(`express-session`);
 const rd = require(`./register_category/register_disabled`);
 const rp = require(`./register_category/register_parent`);
 const rc = require(`./register_category/register_center`);
 const rt = require(`./register_category/register_teacher`);
 const rn = require(`./register_category/register_normal`);
 
-router.use(cookieParser());
 
-// 세션 설정
-router.use(
-  expressSession({
-    secret: "my key",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-
-function check_user_category(user_id,user_category){
-    if(user_category == 1){
+async function check_user_category(post){
+    if(post.user_category == 1){
         console.log(`장애인`);
-        rd.disabled_register(false, false, `축구`, `왼팔장애`, user_id)
-    } else if(user_category == 2){
+        rd.disabled_register(post.is_parent, post.is_center, post.what_hobby, post.what_disabled, post.user_id)
+    } else if(post.user_category == 2){
         console.log("보호자");
-        rp.parent_register(user_id);
-    } else if(user_category == 3){
+        rp.parent_register(post.ID_reg);
+    } else if(post.user_category == 3){
         console.log("센터");
-        rc.center_register("부산시 금정구",user_id);
-    } else if(user_category == 4){
+        let dis_data=[];
+        for(let i=0; i<post.count_disabled; ++i){
+            dis_data.push(post[`disabled_center_${i}`]);
+        };
+        console.log(dis_data);
+        await rc.center_register(post.center_address,post.ID_reg, dis_data);
+    } else if(post.user_category == 4){
         console.log("강사");
-        rt.teacher_register(user_id);
-    } else if(user_category == 5){
+        rt.teacher_register(post.ID_reg);
+    } else if(post.user_category == 5){
         console.log("일반사용자");
-        rn.normal_register(user_id);
+        rn.normal_register(post.ID_reg);
     }
     else{
         console.log("잘못 입력됨");
@@ -59,7 +52,7 @@ router.post(`/`, (req,res,next)=>{
         body += data;
     });
 
-    req.on('end',function(){
+    req.on('end', async function(){
         let post = qs.parse(body);
         if (req.session.dupreg != post.ID_reg) {
             res.render(`alert`, {error : `중복체크 후 회원가입 해주세요.`});
@@ -67,15 +60,18 @@ router.post(`/`, (req,res,next)=>{
             const querystring = 
                 `insert into Account values ('${post.ID_reg}', '${post.PW_reg}', '${post.NAME_reg}', ${post.user_category});`;
 
-            dbClient
+            await dbClient
                 .query(querystring)
                 .then(() => {
                     console.log(querystring);
                 })
                 .then(()=>{
-                    check_user_category(post.ID_reg, post.user_category);
+                    check_user_category(post);
                 })
                 .then(()=>{
+                    req.session.destroy(err=>{
+                        console.error(err);
+                    });
                     res.redirect(`/`);
                 })
                 .catch((e) => {

@@ -6,7 +6,8 @@ router.get(`/`, (req, res) => {
     if (req.session.user) {
       const querystring = `
         SELECT title, content, date, program_id
-        FROM program;
+        FROM program
+        ORDER BY program_id;
       `
 
       dbClient.query(querystring)

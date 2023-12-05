@@ -26,7 +26,7 @@ router.get(`/`, async (req,res,next)=>{
                     console.error(`mypage 오류발생`);
                 })
             
-        if(req.session.user.category == 4){
+        if(req.session.user.category == 4 || req.session.user.category == 0){
             const querystr = `
                 with findteacherid as (
                     SELECT teacher_id

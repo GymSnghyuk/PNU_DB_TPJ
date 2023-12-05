@@ -73,6 +73,18 @@ body {
     margin: 0 auto;
     margin-top: 300px;
 }
+.center-disabled{
+    width: 60%;
+    height: 60px;
+    margin-left: 20%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 24px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: rgb(232, 231, 231);
+}
+
 .regist-wrapper > h1 {
     font-size: 48px;
     color: rgb(21, 157, 98);
@@ -95,7 +107,6 @@ body {
 }
 .category_select {
     font-size: 24px;
-    
 }
 #ID_reg {
     width: 40%;
@@ -125,7 +136,7 @@ body {
     margin-left: 20%;
 }
 #user_category {
-    margin-left: 10px;
+    margin-left: 20%;
 }
 
 #regist_button {
@@ -144,7 +155,7 @@ body {
 .hidden_content {
     font-size: 24px;
 }
-#disabled_id, #parent_select, #parent_id, #center_id, #center_address, #teacher_id, #normal_user_id {
+#disabled_id, #what_disabled, #what_hobby,#center_select, #parent_select, #parent_id, #center_id, #center_address, #teacher_id, #normal_user_id {
     width: 60%;
     height: 60px;
     margin-left: 20%;
@@ -155,7 +166,7 @@ body {
     border-radius: 6px;
     background-color: rgb(232, 231, 231);
 }
-#is_parent {
+#is_parent, #is_center, #what_dis, #hobby {
     font-size: 24px;
     margin-left: 20%;
 }

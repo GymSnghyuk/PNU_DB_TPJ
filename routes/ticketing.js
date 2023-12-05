@@ -3,6 +3,8 @@ const router = express.Router();
 const dbClient = require(`../lib/db`);
 const qs = require(`querystring`);
 
+
+// 신청페이지로 이동
 router.get(`/:id`, async (req, res, next)=>{
     if(req.session.user){
         if(req.session.user.category != 4 && req.session.user.category != 5){
@@ -49,6 +51,8 @@ router.get(`/:id`, async (req, res, next)=>{
     }
 })
 
+
+// 신청하기
 router.post(`/:id`, (req, res, next)=>{
     if(req.session.user){
         let body = ``;
@@ -58,35 +62,62 @@ router.post(`/:id`, (req, res, next)=>{
     
         req.on('end', async function(){        
             let post = await qs.parse(body);
-        
-            const updatequery = `
-                UPDATE program 
-                SET count=count + ${post.howmany}
+            let check = false;
+
+            const max_check_query = `
+                SELECT count_max, count
+                FROM program
                 WHERE program_id = ${req.params.id};
             `;
 
-            await dbClient.query(updatequery)
+            await dbClient.query(max_check_query)
                 .then((results)=>{
-                    console.log("program 테이블 count 업데이트 성공");
+                    const count_cur_q = results.rows[0]["count"];
+                    const count_max_q = results.rows[0]["count_max"];
+                    if(count_max_q >= count_cur_q + post.howmany && post.howmany > 0){
+                        check = true
+                    }
                 })
                 .catch((err)=>{
                     console.error(err);
-                    res.render(`alert`, {error: "DB에 count 업데이트 못했음"});
-                })
+                    res.render(`alert`, {error: "인원 체크 중 오류 발생"});
+                });
 
-            const querystring = `
-                INSERT INTO ticketing VALUES (${req.params.id}, '${req.session.user.id}',${post.howmany});
-            `;
+            if(check){
+                const updatequery = `
+                    UPDATE program 
+                    SET count=count + ${post.howmany}
+                    WHERE program_id = ${req.params.id};
+                `;
 
-            await dbClient.query(querystring)
-                .then((results)=>{
-                    console.log("신청 성공");
-                    res.redirect(`/post/${req.params.id}`);
-                })
-                .catch((err)=>{
-                    console.error(err);
-                    res.render(`alert`, {error: "count 업데이트 후 "})
-                })
+                await dbClient.query(updatequery)
+                    .then((results)=>{
+                        console.log("program 테이블 count 업데이트 성공");
+                    })
+                    .catch((err)=>{
+                        console.error(err);
+                        res.render(`alert`, {error: "DB에 count 업데이트 못했음"});
+                    })
+
+                const querystring = `
+                    INSERT INTO ticketing VALUES (${req.params.id}, '${req.session.user.id}',${post.howmany});
+                `;
+
+                await dbClient.query(querystring)
+                    .then((results)=>{
+                        console.log("신청 성공");
+                        res.redirect(`/post/${req.params.id}`);
+                    })
+                    .catch((err)=>{
+                        console.error(err);
+                        res.render(`alert`, {error: "count 업데이트 후 "})
+                    })
+            } else {
+                res.render(`alert`, {error: "신청할 수 없습니다. 인원 정보를 확인하세요."});
+            }
+
+            
+            
         });
     }
     else{
@@ -94,6 +125,8 @@ router.post(`/:id`, (req, res, next)=>{
     }
 });
 
+
+// 신청 취소
 router.post(`/delete/:pid/:howmany`, async (req,res,next)=>{
     if(req.session.user){
         const cancelquery = `

@@ -18,7 +18,7 @@ router.post(`/`, (req, res, next) => {
     });
 
     req.on('end',async function(){
-        if(req.session.user.category == 4 || req.session.user.category == 0){
+        if(req.session.user.category == 4){
             let post = qs.parse(body);
             const userid = req.session.user.id;
             const name = req.session.user.name;

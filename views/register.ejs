@@ -28,33 +28,46 @@
             </div>
             <div class="category_select">
                 <label for="user_category" id="category">유저 카테고리 </label> <br>
-                <label><input type="radio" name="user_category" id="user_category_1" value="1" onclick="checked_category(this.value)">장애인</label>
-                <label><input type="radio" name="user_category" id="user_category_2" value="2" onclick="checked_category(this.value)">보호자</label>
-                <label><input type="radio" name="user_category" id="user_category_3" value="3" onclick="checked_category(this.value)">센터</label>
-                <label><input type="radio" name="user_category" id="user_category_4" value="4" onclick="checked_category(this.value)">강사</label>
-                <label><input type="radio" name="user_category" id="user_category_5" value="5" onclick="checked_category(this.value)">일반 사용자</label>
-                
+                <div id="user_category">
+                    <label><input type="radio" name="user_category" id="user_category_1" value="1" onclick="checked_category(this.value)">장애인</label>
+                    <label><input type="radio" name="user_category" id="user_category_2" value="2" onclick="checked_category(this.value)">보호자</label>
+                    <label><input type="radio" name="user_category" id="user_category_3" value="3" onclick="checked_category(this.value)">센터</label>
+                    <label><input type="radio" name="user_category" id="user_category_4" value="4" onclick="checked_category(this.value)">강사</label>
+                    <label><input type="radio" name="user_category" id="user_category_5" value="5" onclick="checked_category(this.value)">일반 사용자</label>    
+                </div>
             </div>
             <div class="hidden_content" id="content_1" style="display: none;">
-                <input name="disabled_id" id="disabled_id" placeholder="disabled id"> <br>
+                <br><br>
+                <label for="what_hobby" id="hobby"> 취미 </label> <br>
+                <input name="what_hobby" id="what_hobby" placeholder="취미를 입력하세요."> <br>
                 <label for="parent_select" id="is_parent"> 보호자 유무 </label> <br>
                 <select name="parent_select" id="parent_select">
                     <option value="true">예</option>
                     <option value="false">아니오</option>
                 </select>
+                <br>
+                <label for="center_select" id="is_center"> 센터 유무 </label> <br>
+                <select name="center_select" id="center_select">
+                    <option value="true">예</option>
+                    <option value="false">아니오</option>
+                </select>
+                <label for="what_disabled" id="what_dis"> 장애 종류 </label> <br>
+                <input name="what_disabled" id="what_disabled" placeholder="본인의 장애 종류를 입력하세요."> <br>
             </div>
             <div class="hidden_content" id="content_2" style="display: none;">
-                <input name="parent_id" id="parent_id" placeholder="parent id">
             </div>
             <div class="hidden_content" id="content_3" style="display: none;">
-                <input name="center_id" id="center_id" placeholder="center id">
                 <input name="center_address" id="center_address" placeholder="center address">
+                <div id="center_disabled" >
+                    <input type="text" name="disabled_center_0" class="center-disabled" placeholder="disabled_id"> <input type="button" value="추가" onclick="add_textbox()">
+                </div>
+                <input  id="count_disabled" name="count_disabled" value="1" style="display: none;" >            
             </div>
-            <div class="hidden_content" id="content_4" style="display: none;">
-                <input name="teacher_id" id="teacher_id" placeholder="teacher id">
+            <div class="hiddedn_content" id="content_4" style="display: none;">
+
             </div>
             <div class="hidden_content" id="content_5" style="display: none;">
-                <input name="normal_user_id" id="normal_user_id" placeholder="normal user id">
+
             </div>
 
             <button type="submit" id="regist_button">회원가입</button>
@@ -87,6 +100,23 @@
                 selectedContent.style.display = 'block';
             }
         }
+
+        let count_center=0;
+        const add_textbox = () => {
+            count_center++;
+            const box = document.getElementById("center_disabled");
+            const newP = document.createElement('p');
+            newP.innerHTML = `<input type='text' name=disabled_center_${count_center} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove(this)'>`;
+            box.appendChild(newP);
+            document.getElementById("count_disabled").value=count_center+1;
+        }
+
+        const remove = (obj) => {
+            count_center--;
+            document.getElementById('center_disabled').removeChild(obj.parentNode);
+            document.getElementById("count_disabled").value=count_center+1;
+        }
+    
     </script>
 </body>
 </html>

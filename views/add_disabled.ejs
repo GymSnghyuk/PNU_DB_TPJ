@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="center_disabled" >
+        <input type="text" name="disabled_center_0" class="center-disabled" placeholder="disabled_id"> <input type="button" value="추가" onclick="add_textbox()">
+    </div>
+    <input  id="count_disabled" name="count_disabled" value="1" style="display: none;" >
+
+
+    <script>
+        let count_center=0;
+        const add_textbox = () => {
+            count_center++;
+            const box = document.getElementById("center_disabled");
+            const newP = document.createElement('p');
+            newP.innerHTML = `<input type='text' name=disabled_center_${count_center} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove(this)'>`;
+            box.appendChild(newP);
+            document.getElementById("count_disabled").value=count_center+1;
+        }
+
+        const remove = (obj) => {
+            count_center--;
+            document.getElementById('center_disabled').removeChild(obj.parentNode);
+            document.getElementById("count_disabled").value=count_center+1;
+        }
+    </script>
+</body>
+</html>

@@ -9,8 +9,17 @@
 
   <body>
     <%- include('top.ejs') %>
+    <div id="hidden_div">
+      <%- include('search.ejs')%>
+    </div>
     <footer>
       <%- include('footer.ejs') %>
     </footer>
+    
+    <script>
+      if(<%=hidden_div%>){
+        document.getElementById("hidden_div").style.display = "none";
+      }
+    </script>
   </body>
 </html>
