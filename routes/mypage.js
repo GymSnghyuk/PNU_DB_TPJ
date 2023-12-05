@@ -94,11 +94,17 @@ router.get(`/disabled/:category/:id`,(req, res, next)=>{
                 with pid as (
                     SELECT parent_id
                     FROM parent
-                    WHERE user_id = '${userid}'    
+                    WHERE user_id = 'qhghwk'    
+                ),
+                did as(
+                    SELECT disabled_id
+                    FROM Relationship R, pid P
+                    WHERE R.parent_id = P.parent_id
                 )
-                SELECT disabled_id
-                FROM relationship R, pid P
-                WHERE R.parent_id = P.parent_id;
+                SELECT A.user_id, A.name
+                FROM disabled D, did, account A
+                WHERE D.disabled_id = did.disabled_id and A.user_id = D.user_id;
+        
             `;
 
             dbClient.query(find_parent_id_query)
@@ -108,7 +114,28 @@ router.get(`/disabled/:category/:id`,(req, res, next)=>{
                     })
 
         } else if(category == 3){
-            //센터
+            const find_center_id_query = `
+                with cid as (
+                    SELECT center_id
+                    FROM center
+                    WHERE user_id = '${userid}'    
+                ),
+                did as(
+                    SELECT disabled_id
+                    FROM take_center T, cid C
+                    WHERE T.center_id = C.center_id
+                )
+                SELECT A.user_id, A.name
+                FROM disabled D, did, account A
+                WHERE D.disabled_id = did.disabled_id and A.user_id = D.user_id;
+            `;
+
+            dbClient.query(find_parent_id_query)
+                    .then((results)=>{
+                        console.log(results.rows);
+                        res.render(`disabled`,{posts: results.rows})
+                    })
+            
         }
     }
 
