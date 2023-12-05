@@ -73,19 +73,6 @@ body {
     margin: 0 auto;
     margin-top: 100px;
 }
-
-.center-disabled{
-    width: 60%;
-    height: 60px;
-    margin-left: 20%;
-    padding: 0 10px;
-    box-sizing: border-box;
-    font-size: 24px;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    background-color: rgb(232, 231, 231);
-}
-
 .regist-wrapper > h1 {
     font-size: 48px;
     color: rgb(21, 157, 98);
@@ -170,6 +157,30 @@ body {
 #is_parent, #is_center, #what_dis, #hobby {
     font-size: 24px;
     margin-left: 20%;
+}
+
+.care-disabled, .center-disabled {
+    width: 50%;
+    height: 60px;
+    margin-left: 20%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 24px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: rgb(232, 231, 231);
+}
+#parent_button, #center_button {
+    width: 10%;
+    height: 60px;
+    color: #fff;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    font-size: 24px;
+    background-color: rgb(21, 157, 98);
+    margin-top: 20px;
 }
 /* header */
 ul {
