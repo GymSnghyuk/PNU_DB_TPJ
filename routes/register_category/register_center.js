@@ -15,6 +15,7 @@ rc.center_register = async function (address, user_id, dis_data){
         .catch((e) =>{
             console.error(e.stack)
         });
+        
     const centerid_query = `
         SELECT max(center_id)
         FROM center;
