@@ -10,7 +10,9 @@ rd.disabled_register = async function (is_parent, is_center, hobby, kind_of_disa
             values (${is_parent}, ${is_center}, '${hobby}', '${kind_of_disabled}', '${user_id}');
     `
 
-    dbClient
+    console.log(querystring);
+
+    await dbClient
         .query(querystring)
         .then(()=>{
             console.log(`insert complete`);

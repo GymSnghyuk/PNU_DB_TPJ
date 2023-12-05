@@ -62,11 +62,15 @@
                 <input name="what_disabled" id="what_disabled" placeholder="본인의 장애 종류를 입력하세요."> <br>
             </div>
             <div class="hidden_content" id="content_2" style="display: none;">
+                <div id="parent_disabled" >
+                    <input type="text" name="disabled_parent_0" class="center-disabled" placeholder="disabled_id"> <input type="button" value="추가" onclick="add_textbox_p()">
+                </div>
+                <input  id="count_parent" name="count_parent" value="1" style="display: none;" >            
             </div>
             <div class="hidden_content" id="content_3" style="display: none;">
                 <input name="center_address" id="center_address" placeholder="center address">
                 <div id="center_disabled" >
-                    <input type="text" name="disabled_center_0" class="center-disabled" placeholder="disabled_id"> <input type="button" value="추가" onclick="add_textbox()">
+                    <input type="text" name="disabled_center_0" class="center-disabled" placeholder="disabled_id"> <input type="button" value="추가" onclick="add_textbox_c()">
                 </div>
                 <input  id="count_disabled" name="count_disabled" value="1" style="display: none;" >            
             </div>
@@ -108,14 +112,32 @@
             }
         }
 
+
+        let count_parent=0;
+        const add_textbox_p = () => {
+            count_parent++;
+            const box = document.getElementById("parent_disabled");
+            const newP = document.createElement('p');
+            newP.innerHTML = `<input type='text' name=disabled_parent_${count_parent} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove(this)'>`;
+            box.appendChild(newP);
+            document.getElementById("count_disabled").value=count_parent+1;
+        }
+
+
         let count_center=0;
-        const add_textbox = () => {
+        const add_textbox_c = () => {
             count_center++;
             const box = document.getElementById("center_disabled");
             const newP = document.createElement('p');
-            newP.innerHTML = `<input type='text' name=disabled_center_${count_center} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove(this)'>`;
+            newP.innerHTML = `<input type='text' name=disabled_center_${count_center} class='center-disabled' placeholder='disabled_id'> <input type='button' value='삭제' onclick='remove_p(this)'>`;
             box.appendChild(newP);
             document.getElementById("count_disabled").value=count_center+1;
+        }
+
+        const remove_p = (obj) => {
+            count_parent--;
+            document.getElementById('parent_disabled').removeChild(obj.parentNode);
+            document.getElementById("count_disabled").value=count_parent+1;
         }
 
         const remove = (obj) => {

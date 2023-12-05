@@ -15,8 +15,12 @@
     <footer>
       <%- include('footer.ejs') %>
     </footer>
-    
     <script>
+      chk_form=function(url){
+          let frm = document.getElementById('post_frm');
+          frm.action = `/post/${url}`
+          frm.submit();
+      }
       if(<%=hidden_div%>){
         document.getElementById("hidden_div").style.display = "none";
       }
