@@ -25,7 +25,7 @@ router.post(`/`, (req,res,next)=>{
         const querystring = 
             `
             SELECT *
-            FROM post P
+            FROM program P
             WHERE P.title LIKE '%${post.findkey}%';
             `;
 

@@ -26,6 +26,7 @@ router.get(`/`, async (req,res,next)=>{
                     console.error(`mypage 오류발생`);
                 })
             
+        // 강사 이거나 관리자일 경우
         if(req.session.user.category == 4 || req.session.user.category == 0){
             const querystr = `
                 with findteacherid as (
@@ -89,7 +90,7 @@ router.get(`/disabled/:category/:id`,(req, res, next)=>{
         const category = req.params.category;
         const userid = req.params.id;
         
-        if(category == 2){
+        if(category == 2 || category == 0){
             const find_parent_id_query = `
                 with pid as (
                     SELECT parent_id
@@ -130,7 +131,7 @@ router.get(`/disabled/:category/:id`,(req, res, next)=>{
                 WHERE D.disabled_id = did.disabled_id and A.user_id = D.user_id;
             `;
 
-            dbClient.query(find_parent_id_query)
+            dbClient.query(find_center_id_query)
                     .then((results)=>{
                         console.log(results.rows);
                         res.render(`disabled`,{posts: results.rows})

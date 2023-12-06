@@ -8,6 +8,8 @@ const qs = require(`querystring`);
 router.get(`/:id`, async (req, res, next)=>{
     if(req.session.user){
         if(req.session.user.category != 4 && req.session.user.category != 5){
+            
+            // 신청하는 사람이 이미 신청했는지 확인 
             const check_ticketing = `
                 SELECT *
                 FROM ticketing
@@ -22,22 +24,62 @@ router.get(`/:id`, async (req, res, next)=>{
                 })
                 .catch((err)=>{
                     console.error(err);
-                })
-            
+                });
+
+            // 신청한 내역이 없으면
             if(check==0){
+                // 현재 신청 인원 / 신청 가능 최대 인원 조회
                 const querystring = `
                     SELECT count, count_max
                     FROM program
                     WHERE program_id = ${req.params.id};
                 `;
 
-                dbClient.query(querystring)
+                await dbClient.query(querystring)
                     .then((results)=>{
-                        res.render(`ticketing`,
-                            {count_current : results.rows[0].count, 
-                            count_max : results.rows[0].count_max,
-                            post_id : req.params.id});
+                        // 센터라면
+                        if(req.session.user.category == 3){
+                            const find_center_id_query = `
+                                with cid as (
+                                    SELECT center_id
+                                    FROM center
+                                    WHERE user_id = '${req.session.user.id}'    
+                                ),
+                                did as(
+                                    SELECT disabled_id
+                                    FROM take_center T, cid C
+                                    WHERE T.center_id = C.center_id
+                                )
+                                SELECT A.user_id, A.name
+                                FROM disabled D, did, account A
+                                WHERE D.disabled_id = did.disabled_id and A.user_id = D.user_id;
+                            `;
+
+                            dbClient.query(find_center_id_query)
+                                    .then((ans)=>{
+                                        res.render(`ticketing`,
+                                        {count_current : results.rows[0].count, 
+                                        count_max : results.rows[0].count_max,
+                                        post_id : req.params.id,
+                                        posts : ans.rows,
+                                        });
+                                    });
+                        }
+                        else{
+                            res.render(`ticketing`,
+                                {count_current : results.rows[0].count, 
+                                count_max : results.rows[0].count_max,
+                                post_id : req.params.id,
+                                posts : null,
+                                });
+                        }
+                        
                     })
+                    .catch((err) => {
+                        console.error(err);
+                        render(`alert`, {error: "신청 실패. 오류"})
+                    });
+
             } else{
                 res.render(`alert`, {error: "이미 신청한 프로그램입니다."});
             }

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>신청 페이지</title>
+
 </head>
 <body>
-    <h1>신청하는 페이지</h1>
+    <h1>신청 화면</h1>
     <form action="/ticketing/<%=post_id%>" method="post">
         <%=count_current%>  / <%=count_max%>
         <br>
@@ -14,5 +15,30 @@
         <br>
         <input type="submit" value="신청하기">
     </form>
+    <% if(posts){ %>
+    <h2> 장애인 목록 </h2>
+    <div class="post_group">
+        <table class="post_table">
+            <thead id="post_head">
+                <tr>
+                    <th>ID</th>
+                    <th>Disabled 이름</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let post of posts) { %>
+                    <form action="" method="GET" id="post_frm">
+                        <tr>
+                        
+                        <td><%= post.user_id %></td>
+                        <td><%= post.name %></td>
+                    <!-- <td><a href="#" onclick="chk_form( <%=post.program_id%> )" ><%= post.title %></a></td> -->
+                        </tr>
+                    </form>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% } %>
 </body>
 </html>
