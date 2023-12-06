@@ -8,7 +8,7 @@
 </head>
 <body>
     <%- include('top.ejs') %>
-    <br><br><br><br><br><br><br>
+    <!-- <br><br><br><br><br><br><br>
     <h1>게시글 제목 : <%=post_title%></h1>
     <br><br>
     <h2>게시날짜 : <%=post_write_date%></h2>
@@ -17,9 +17,74 @@
     <h2>프로그램 진행 날짜 : <%=post_date%></h2>
     <h2>게시글 내용 : <%=post_content%></h2>
     <h2>최대 인원 : <%=post_count_max%></h2>
-    <h2>현재 인원 : <%=post_count%></h2>
+    <h2>현재 인원 : <%=post_count%></h2> -->
+    <div class="wrap_write">
+        <table class="write_main">
+            <tr>
+                <td colspan="3">
+                    <div class="write_head">
+                        <span>프로그램 정보</span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>프로그램 제목</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <span id="wirte_title"><%=post_title%></span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>작성자</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <span><%=post_auth%></span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>진행 날짜</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <span><%=post_date%></span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>카테고리</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <span id="wirte_category"><%=post_category%></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td colspan="2">
+                    <pre id="post_content"><%=post_content%></pre>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>최대 인원</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <span id="count_max"><%=post_count_max%></span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>현재 인원</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <span id="count"><%=post_count%></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
     <form action="/ticketing" method="GET" id="ticketing_frm">
-        <button onclick="chk_form(<%=post_id%>)">신청하기</button>
+        <button class="submit_button2" onclick="chk_form(<%=post_id%>)">신청하기</button>
     </form>
     <footer>
         <%- include('footer.ejs') %>
@@ -30,7 +95,6 @@
             frm.action = `/ticketing/${url}`
             frm.submit();
         }
-        
     </script>
 </body>
 </html>

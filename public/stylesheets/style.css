@@ -275,7 +275,7 @@ li {
 #footer {
     position: absolute;
     z-index: 1;
-    height: 200px;
+    height: 150px;
     width: 100%;
     border-top: 2px solid #302f30;
     background-color: #302f30;
@@ -315,7 +315,7 @@ li {
     display: block;
     margin-bottom: 7px;
     padding-top: 10px;
-    font-size: 18px;
+    font-size: 14px;
     color: #989798;
 }
 
@@ -447,7 +447,7 @@ li {
 }
 /* write page */
 .wrap_write {
-    padding-top: 70px;
+    padding-top: 60px;
 }
 .write_main {
     margin: 0 auto;
@@ -484,11 +484,11 @@ li {
     height: 49px;
 	padding: 0px 10px;
 }
-.wrap_write .write_main textarea {
+.wrap_write .write_main textarea, pre{
     resize: none;
     width: 86%;
     padding: 2%;
-    height: 200px;
+    height: 180px;
     border: 2px solid #f0f0f0;
     font-size: 17px;
     line-height: 22px;
@@ -509,6 +509,7 @@ li {
     color: #fff;
     cursor: pointer;
 }
+
 @media (max-width:980px) {
     
 }
