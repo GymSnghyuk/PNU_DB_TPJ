@@ -4,7 +4,7 @@ const dbClient = require(`../lib/db`);
 
 router.get(`/`, async (req,res,next)=>{
     if(!req.session.user){
-        res.render(`alert`, {error: "로그인 후 이용해주세요."});
+        res.redirect(`/login`);
     } else{
             const querystring = `
                 SELECT *
@@ -94,7 +94,7 @@ router.get(`/disabled/:category/:id`,(req, res, next)=>{
                 with pid as (
                     SELECT parent_id
                     FROM parent
-                    WHERE user_id = 'qhghwk'    
+                    WHERE user_id = '${userid}'    
                 ),
                 did as(
                     SELECT disabled_id

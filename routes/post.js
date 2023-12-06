@@ -33,7 +33,7 @@ router.get(`/:id`,async (req, res, next)=>{
                 const post_data = results.rows[0];
                 res.render(`post`, {
                     post_title : post_data['title'],
-                    post_date : post_data['date'],
+                    post_write_date : post_data['write_date'],
                     post_content : post_data['content'],
                     post_auth : auth,
                     post_category : post_data['category'],
