@@ -9,6 +9,7 @@ router.get(`/`, (req, res) => {
         FROM program
         ORDER BY program_id;
       `
+      
 
       dbClient.query(querystring)
         .then((ans)=>{
