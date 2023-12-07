@@ -24,9 +24,13 @@
                 <td colspan="3">
                     <div class="write_head">
                         <span>프로그램 정보</span>
+                        <form action="/ticketing" method="GET" id="ticketing_frm">
+                            <button class="submit_button2" onclick="chk_form(<%=post_id%>)" style="margin-left: 80%;">신청하기</button>
+                        </form>
                     </div>
                 </td>
             </tr>
+            
             <tr class="tr_oneLine">
                 <th><span>프로그램 제목</span></th>
                 <td colspan="2">
@@ -83,9 +87,7 @@
             </tr>
         </table>
     </div>
-    <form action="/ticketing" method="GET" id="ticketing_frm">
-        <button class="submit_button2" onclick="chk_form(<%=post_id%>)">신청하기</button>
-    </form>
+    
     <footer>
         <%- include('footer.ejs') %>
       </footer>
