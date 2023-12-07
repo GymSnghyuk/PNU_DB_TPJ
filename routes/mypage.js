@@ -47,7 +47,7 @@ router.get(`/`, async (req,res,next)=>{
                         name : data.name,
                         user_category : data.user_category,
                         posts : ans.rows,
-                        hidden_ticketing : "게시 목록",
+                        hidden_ticketing : "나의 게시 목록",
                         cancel_hidden : "",
                     });
                 })
@@ -71,7 +71,7 @@ router.get(`/`, async (req,res,next)=>{
                         name : data.name,
                         user_category : data.user_category,
                         posts : ans.rows,
-                        hidden_ticketing : "신청 목록",
+                        hidden_ticketing : "나의 신청 목록",
                         cancel_hidden : "신청 취소",
                     })
                 })

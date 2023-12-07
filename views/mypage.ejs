@@ -44,7 +44,7 @@
     
     <div id="mywrite_wrap">
         <div class="title">
-            <span class="mywrite">나의 게시 목록</span>
+            <span class="mywrite"><%=hidden_ticketing%></span>
         </div>
         <table id="mywrite_table">
             <thead id="mywrite_head">
@@ -61,7 +61,7 @@
                     <td><%= post.date %></td>
                     <td>
                         <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
-                            <button type="submit" name="cancel" ><%=cancel_hidden%></button>
+                            <button type="submit" name="cancel" id="cancel_button" ><%=cancel_hidden%></button>
                         </form>
                     </td>
                 </tr>
