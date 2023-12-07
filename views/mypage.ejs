@@ -8,42 +8,67 @@
 </head>
 <body>
     <%- include('top.ejs') %>
-    <br><br><br><br><br><br><br>
-    <h1>
-        ID : <%=id%>
-    </h1>
-    <h1>
-        NAME : <%=name%>
-    </h1>
-    <h1>
-        종류 : <%=user_category%>
-    </h1>
-    <h1>
-        <%=hidden_ticketing%>
-    </h1>
+    <div id="myinfo_wrap">
+        <div id="myinfo_main">
+            <div class="title">
+                <span class="myinfo">내 정보</span>
+            </div>
+            <table class="myinfo_table">
+                <tr>
+                    <td class="myinfo_item">
+                        <div><span>ID</span></div>
+                    </td>
+                    <td class="myinfo_item_value">
+                        <div><span><%=id%></span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="myinfo_item">
+                        <div><span>이름</span></div>
+                    </td>
+                    <td class="myinfo_item_value">
+                        <div><span><%=name%></span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="myinfo_item">
+                        <div><span>사용자 종류</span></div>
+                    </td>
+                    <td class="myinfo_item_value">
+                        <div><span><%=user_category%></span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     
-    <table>
-        <thead>
-            <th>제목</th>
-            <th>신청인원</th>
-            <th>프로그램 운영 일시</th>
-            <th></th>
-        </thead>
-        <% for(let post of posts) { %>
-        <tbody>
-            <tr>
-                <td><%= post.title %></td>
-                <td><%= post.howmany %></td>
-                <td><%= post.date %></td>
-                <td>
-                    <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
-                        <button type="submit" name="cancel" ><%=cancel_hidden%></button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-        <% } %>
-    </table>
+    <div id="mywrite_wrap">
+        <div class="title">
+            <span class="mywrite">나의 게시 목록</span>
+        </div>
+        <table id="mywrite_table">
+            <thead id="mywrite_head">
+                <th>제목</th>
+                <th>신청인원</th>
+                <th>프로그램 운영 일시</th>
+                <th></th>
+            </thead>
+            <% for(let post of posts) { %>
+            <tbody>
+                <tr>
+                    <td><%= post.title %></td>
+                    <td id="mywrite_count"><%= post.howmany %>명</td>
+                    <td><%= post.date %></td>
+                    <td>
+                        <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
+                            <button type="submit" name="cancel" ><%=cancel_hidden%></button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+            <% } %>
+        </table>
+    </div>
 
     <form action="/mypage/disabled/<%=user_category%>/<%=id%>" method="get" id="">
         <input type="submit" value="연결된 disabled 보기" id="connect_disabled">

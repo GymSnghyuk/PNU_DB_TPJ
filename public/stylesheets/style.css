@@ -445,6 +445,11 @@ li {
     padding: 1em .5em;
     vertical-align: middle;
 }
+.post_table #add_line {
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #a39485;
+}
 /* write page */
 .wrap_write {
     padding-top: 60px;
@@ -509,7 +514,87 @@ li {
     color: #fff;
     cursor: pointer;
 }
-
+/* my page */
+#myinfo_wrap {
+    margin: 0 auto;
+    padding-top: 100px;
+}
+#myinfo_wrap #myinfo_main {
+    margin: 0 auto;
+    max-width: 550px;
+    min-width: 500px;
+}
+#myinfo_wrap #myinfo_main .title {
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 30px;
+}
+#myinfo_wrap #myinfo_main .title .myinfo {
+    display: block;
+    margin: 2px 0px;
+}
+.myinfo_table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.myinfo_table .myinfo_item {
+    padding: 15px 0px;
+    width: 100px;
+    color: #444;
+}
+.myinfo_table .myinfo_item div {
+    margin-top: 10px;
+}
+.myinfo_table .myinfo_item_value div {
+    width: 100%;
+    height: 50px;
+    line-height: 47px;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #f0f0f0;
+}
+.myinfo_table .myinfo_item_value span {
+    display: block;
+    overflow: hidden;
+    width: 90%;
+    height: 49px;
+    padding: 0 3%;
+    margin-top: 10px;
+}
+#mywrite_wrap {
+    margin: 0 auto;
+    padding-top: 50px;
+    max-width: 550px;
+    min-width: 500px;
+}
+#mywrite_wrap #mywrite_table {
+    margin: 0 auto;
+    width: 550px;
+}
+#mywrite_wrap .title {
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 30px;
+}
+#mywrite_wrap .title .mywrite {
+    display: block;
+    margin: 2px 0px;
+}
+#mywrite_wrap #mywrite_table #mywrite_count {
+    text-align: center;
+}
+/* main page - recomend part */
+#recommended_content {
+    padding-top: 100px;
+}
+#recommended_title {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    height: 50px;
+    color: #444;
+}
 @media (max-width:980px) {
     
 }
