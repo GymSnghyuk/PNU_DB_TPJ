@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const dbClient = require(`../lib/db`);
 
@@ -6,9 +6,9 @@ const dbClient = require(`../lib/db`);
 const empty_posts = [{}];
 
 router.get(`/`, (req, res) => {
-    if(req.session.user){
-        if(req.session.user.category == 1){
-            const querystring = `
+  if (req.session.user) {
+    if (req.session.user.category == 1) {
+      const querystring = `
                 with dis_hobby as (
                     SELECT hobby
                     FROM disabled
@@ -20,30 +20,33 @@ router.get(`/`, (req, res) => {
                 ORDER BY P.program_id;
             `;
 
-            dbClient.query(querystring)
-                .then((results)=>{
-                    res.render(`index`, {
-                        posts: results.rows,
-                        hidden_div : false,
-                    });                    
-                })
-                .catch((err)=>{
-                    console.error(err);
-                    res.render(`alert`, {error: "오류났어요"});
-                })
-        }
-        else{
-            res.render(`index`, {
-                posts: empty_posts,
-                hidden_div : true,
-            });
-        }
-    } else  {
-        res.render(`index`, {
-            posts: empty_posts,
-            hidden_div : true,
+      dbClient
+        .query(querystring)
+        .then((results) => {
+          res.render(`index`, {
+            posts: results.rows,
+            hidden_div: false,
+            login: true,
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.render(`alert`, { error: "오류났어요" });
         });
+    } else {
+      res.render(`index`, {
+        posts: empty_posts,
+        hidden_div: true,
+        login: true,
+      });
     }
+  } else {
+    res.render(`index`, {
+      posts: empty_posts,
+      hidden_div: true,
+      login: false,
+    });
+  }
 });
 
 module.exports = router;

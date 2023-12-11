@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
-</head>
-<body>
-  <header>
-      <%- include('top.ejs') %>
-  </header>
-    
-    <button type="submit" class="submit_button" onclick="location.href='/write'">등록하기</button>
-    <%- include('search.ejs') %>
-    <%- include('footer.ejs') %>
+  </head>
+  <body>
+    <header><%- include('top.ejs') %></header>
+
+    <button
+      type="submit"
+      class="submit_button"
+      onclick="location.href='/write'"
+    >
+      등록하기
+    </button>
+    <%- include('search.ejs') %> <%- include('footer.ejs') %>
 
     <script>
-        chk_form=function(url){
-            let frm = document.getElementById('post_frm');
-            frm.action = `/post/${url}`
-            frm.submit();
-        }
-        
+      chk_form = function (url) {
+        let frm = document.getElementById("post_frm");
+        frm.action = `/post/${url}`;
+        frm.submit();
+      };
     </script>
-    
-</body>
+  </body>
 </html>

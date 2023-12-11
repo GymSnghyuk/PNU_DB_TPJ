@@ -1,34 +1,48 @@
 <div id="menu">
-    <div id="logo">
-        <a class="mainlogo" href="/"><img src="/img/test_logo.png"></a>
-    </div>
-    <nav id="menu_category" style="position: static; top: initial;">
-        <ul class="top_item">
-            <form action="/postlist" id="gotopost" method="GET">
-                <li><a href="#" onclick="return gotopost()"><span>프로그램</span></a></li>
-            </form>
-            <li><a href="/mypage"><span>마이페이지</span></a></li>
-        </ul>
-    </nav>
-    <nav id="util">
-        <ul class="top_item">
-            <li><a class="link_util link_reg" href="/register"><span>회원가입</span></a></li>
-            <li><a class="link_util link_login" href="/login"><span>로그인</span></a></li>
-            <li><a class="link_util link_login" href="/logout"><span>로그아웃</span></a></li>
-            <li>
-                <form action="/finder" method="GET" id="gotofind">
-                    <a class="search_btn" href="#" onclick="return gotofind()">
-                    <span calss="search_icon"><img src="/img/search_icon.svg"></span></a>
-                </form>
-            </li>
-        </ul>
-    </nav>
+  <div id="logo">
+    <a class="mainlogo" href="/"><img src="/img/test_logo.png" /></a>
+  </div>
+  <nav id="menu_category" style="position: static; top: initial">
+    <ul class="top_item">
+      <form action="/postlist" id="gotopost" method="GET">
+        <li>
+          <a href="#" onclick="return gotopost()"><span>프로그램</span></a>
+        </li>
+      </form>
+      <li>
+        <a href="/mypage"><span>마이페이지</span></a>
+      </li>
+    </ul>
+  </nav>
+  <nav id="util">
+    <ul class="top_item">
+      <%if(!login){%>
+      <li>
+        <a class="link_util link_reg" href="/register"><span>회원가입</span></a>
+      </li>
+      <li>
+        <a class="link_util link_login" href="/login"><span>로그인</span></a>
+      </li>
+      <%} else{%>
+      <li>
+        <a class="link_util link_login" href="/logout"><span>로그아웃</span></a>
+      </li>
+      <%}%>
+      <li>
+        <form action="/finder" method="GET" id="gotofind">
+          <a class="search_btn" href="#" onclick="return gotofind()">
+            <span calss="search_icon"><img src="/img/search_icon.svg" /></span
+          ></a>
+        </form>
+      </li>
+    </ul>
+  </nav>
 </div>
 <script>
-    function gotopost(){
-        document.getElementById("gotopost").submit();
-    }
-    function gotofind(){
-        document.getElementById("gotofind").submit();
-    }
+  function gotopost() {
+    document.getElementById("gotopost").submit();
+  }
+  function gotofind() {
+    document.getElementById("gotofind").submit();
+  }
 </script>

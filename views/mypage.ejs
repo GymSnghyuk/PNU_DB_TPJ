@@ -1,89 +1,103 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('top.ejs') %>
     <div id="myinfo_wrap">
-        <div id="myinfo_main">
-            <div class="title">
-                <span class="myinfo">내 정보</span>
-            </div>
-            <table class="myinfo_table">
-                <tr>
-                    <td class="myinfo_item">
-                        <div><span>ID</span></div>
-                    </td>
-                    <td class="myinfo_item_value">
-                        <div><span><%=id%></span></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="myinfo_item">
-                        <div><span>이름</span></div>
-                    </td>
-                    <td class="myinfo_item_value">
-                        <div><span><%=name%></span></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="myinfo_item">
-                        <div><span>사용자 종류</span></div>
-                    </td>
-                    <td class="myinfo_item_value">
-                        <div><span><%=user_category%></span></div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    
-    <div id="mywrite_wrap">
+      <div id="myinfo_main">
         <div class="title">
-            <span class="mywrite"><%=hidden_ticketing%></span>
+          <span class="myinfo">내 정보</span>
         </div>
-        <table id="mywrite_table">
-            <thead id="mywrite_head">
-                <th>제목</th>
-                <th>신청인원</th>
-                <th>프로그램 운영 일시</th>
-                <th></th>
-            </thead>
-            <% for(let post of posts) { %>
-            <tbody>
-                <tr>
-                    <td><%= post.title %></td>
-                    <td id="mywrite_count"><%= post.howmany %>명</td>
-                    <td><%= post.date %></td>
-                    <td>
-                        <form action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>" method="post">
-                            <button type="submit" name="cancel" id="cancel_button" ><%=cancel_hidden%></button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-            <% } %>
+        <table class="myinfo_table">
+          <tr>
+            <td class="myinfo_item">
+              <div><span>ID</span></div>
+            </td>
+            <td class="myinfo_item_value">
+              <div><span><%=id%></span></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="myinfo_item">
+              <div><span>이름</span></div>
+            </td>
+            <td class="myinfo_item_value">
+              <div><span><%=name%></span></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="myinfo_item">
+              <div><span>사용자 종류</span></div>
+            </td>
+            <td class="myinfo_item_value">
+              <div>
+                <span>
+                  <% if(user_category==0){ %>관리자<% } %> <%
+                  if(user_category==1){ %>장애인<% } %> <% if(user_category==2){
+                  %>보호자<% } %> <% if(user_category==3){ %>센터<% } %> <%
+                  if(user_category==4){ %>강사<% } %> <% if(user_category==5){
+                  %>일반사용자<% } %>
+                </span>
+              </div>
+            </td>
+          </tr>
         </table>
+      </div>
     </div>
 
-    <form action="/mypage/disabled/<%=user_category%>/<%=id%>" method="get" id="">
-        <input type="submit" value="연결된 disabled 보기" id="connect_disabled">
+    <div id="mywrite_wrap">
+      <div class="title">
+        <span class="mywrite"><%=hidden_ticketing%></span>
+      </div>
+      <table id="mywrite_table">
+        <thead id="mywrite_head">
+          <th>제목</th>
+          <th>신청인원</th>
+          <th>프로그램 운영 일시</th>
+          <th></th>
+        </thead>
+        <% for(let post of posts) { %>
+        <tbody>
+          <tr>
+            <td><%= post.title %></td>
+            <td id="mywrite_count"><%= post.howmany %>명</td>
+            <td><%= post.date %></td>
+            <td>
+              <form
+                action="/ticketing/delete/<%=post.program_id%>/<%=post.howmany%>"
+                method="post"
+              >
+                <button type="submit" name="cancel" id="cancel_button">
+                  <%=cancel_hidden%>
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+        <% } %>
+      </table>
+    </div>
+
+    <form
+      action="/mypage/disabled/<%=user_category%>/<%=id%>"
+      method="get"
+      id=""
+    >
+      <input type="submit" value="연결된 disabled 보기" id="connect_disabled" />
     </form>
 
-
-    <footer>
-      <%- include('footer.ejs') %>
-    </footer>
+    <footer><%- include('footer.ejs') %></footer>
 
     <script>
-        // 2 보호자이거나, 3 센터일 경우
-        if(<%=user_category%> != 2 && <%=user_category%> != 3 && <%=user_category%> != 0){
-            document.getElementById("connect_disabled").style.display="none";
-        }
+      // 2 보호자이거나, 3 센터일 경우
+      if(<%=user_category%> != 2 && <%=user_category%> != 3 && <%=user_category%> != 0){
+          document.getElementById("connect_disabled").style.display="none";
+      }
     </script>
-</body>
+  </body>
 </html>
