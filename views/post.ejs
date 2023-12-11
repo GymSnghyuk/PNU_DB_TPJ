@@ -59,7 +59,26 @@
                 <th><span>카테고리</span></th>
                 <td colspan="2">
                     <div class="bottom_line">
-                        <span id="wirte_category"><%=post_category%></span>
+                        <span id="wirte_category">
+                            <% if(post_category === "workout") { %>
+                            <span>운동</span> 
+                            <% } %>
+                            <% if(post_category === "music") { %>
+                            <span>음악</span> 
+                            <% } %>
+                            <% if(post_category === "art") { %>
+                            <span>미술</span> 
+                            <% } %>  
+                            <% if(post_category === "book") { %>
+                            <span>독서</span> 
+                            <% } %>
+                            <% if(post_category === "movie") { %>
+                            <span>영화 감상</span> 
+                            <% } %>
+                            <% if(post_category === "game") { %>
+                            <span>게임</span> 
+                            <% } %>
+                        </span>
                     </div>
                 </td>
             </tr>
