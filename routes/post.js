@@ -49,7 +49,7 @@ router.get(`/:id`,async (req, res, next)=>{
                     post_count : post_data['count'],
                     post_date : post_data['date'],
                     post_id : post_data['program_id'],
-                    user_category : req.session.category,
+                    user_category : req.session.user.category,
                 });
             })
             .catch((err)=>{

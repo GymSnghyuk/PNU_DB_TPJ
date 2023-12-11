@@ -24,18 +24,20 @@
                 <td colspan="3">
                     <div class="write_head">
                         <span>프로그램 정보</span>
-                        <%if(user_category == 1 || user_category == 2 || user_category == 3){%>
-                        <form action="/ticketing/<%=post_id%>" method="GET" id="ticketing_frm">
-                            <button class="submit_button2" style="margin-left: 80%;">신청하기</button>
-                        </form>
-                        <%} else {%>
+                        <span id="apply_b">
+                            <form action="/ticketing/<%=post_id%>" method="GET" id="ticketing_frm">
+                                <button class="submit_button2" style="margin-left: 80%;">신청하기</button>
+                            </form>    
+                        </span>
+                        <span id="deup_b">
                             <form action="/post/delete/<%=post_id%>" method="post" id="delete_frm">
                                 <button class="submit_button2" style="margin-left: 80%;">삭제하기</button>
                             </form>
-                            <form action="/post/update/<%=post_id%>" method="get" id="delete_frm">
+                            <form action="/post/update/<%=post_id%>" method="get" id="update_frm">
                                 <button class="submit_button2"  style="margin-left: 80%;">수정하기</button>
                             </form>
-                        <%}%>
+                        </span>
+                            
                     </div>
                 </td>
             </tr>
@@ -119,5 +121,18 @@
     <footer>
         <%- include('footer.ejs') %>
       </footer>
+      <script>
+        const a = <%=user_category%>;
+        
+        window.onload = function(){
+            if(a == 1 || a == 2 || a == 3){
+                document.getElementById("delete_frm").style.display="none";
+                document.getElementById("update_frm").style.display="none";
+            }else{
+                document.getElementById("ticketing_frm").style.display="none";
+            }
+        }
+       
+      </script>
 </body>
 </html>
