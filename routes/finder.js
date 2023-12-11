@@ -24,9 +24,10 @@ router.post(`/`, (req,res,next)=>{
 
         const querystring = 
             `
-            SELECT *
-            FROM program P
-            WHERE P.title LIKE '%${post.findkey}%';
+                SELECT title, content, to_char(date, 'YYYY-MM-DD' ) as date, program_id
+                FROM program P
+                WHERE P.title LIKE '%${post.findkey}%'
+                ORDER BY program_id;;
             `;
 
         dbClient

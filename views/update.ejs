@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('top.ejs') %>
+    <div class="wrap_write">
+        <form action="/post/update/<%=posts.program_id%>" method="post">
+        <table class="write_main">
+            <tr>
+                <td colspan="3">
+                    <div class="write_head">
+                        <span>프로그램 등록하기</span>
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>프로그램 제목</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <input type="text" id="wirte_title" name="title" placeholder="제목을 입력해주세요" value="<%=posts.title%>">
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>진행 날짜</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <input type="date" name="date" id="date" min="2023-01-01" max="2033-12-31" value="<%=posts.date%>">
+                    </div>
+                </td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>카테고리</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <select name="category" id="wirte_category">
+                            <option value="workout">운동</option>
+                            <option value="music">음악</option>
+                            <option value="art">미술</option>
+                            <option value="book">독서</option>
+                            <option value="movie">영화 감상</option>
+                            <option value="game">게임</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+			    <td colspan="2"><textarea name="content" placeholder="본문 내용을 입력해주세요"><%=posts.content%></textarea></td>
+            </tr>
+            <tr class="tr_oneLine">
+                <th><span>최대 인원 수</span></th>
+                <td colspan="2">
+                    <div class="bottom_line">
+                        <input type="text" id="count_max" name="count_max" placeholder="최대 등록 인원 수를 숫자만 입력하세요" value="<%=posts.count_max%>">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" id="submit_button2" class="submit_button2">등록하기</button>
+        </form>
+    </div>
+    <%- include('footer.ejs') %>
+</body>
+</html>
+

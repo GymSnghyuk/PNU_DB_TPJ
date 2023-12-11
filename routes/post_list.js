@@ -5,7 +5,7 @@ const dbClient = require(`../lib/db`);
 router.get(`/`, (req, res) => {
     if (req.session.user) {
       const querystring = `
-        SELECT title, content, date, program_id
+        SELECT title, content, to_char(date, 'YYYY-MM-DD' ) as date, program_id
         FROM program
         ORDER BY program_id;
       `

@@ -14,7 +14,7 @@ router.get(`/`, (req, res) => {
                     FROM disabled
                     WHERE user_id = '${req.session.user.id}'
                 )
-                SELECT P.program_id, P.date, P.title
+                SELECT P.program_id, to_char(P.date, 'YYYY-MM-DD' ) as date, P.title
                 FROM program P, dis_hobby D
                 WHERE P.category = D.hobby
                 ORDER BY P.program_id;
