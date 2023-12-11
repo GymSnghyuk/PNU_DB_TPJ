@@ -6,15 +6,22 @@ router.get(`/:id`,async (req, res, next)=>{
     if (req.session.user) {
 
         const find_teacher_id_query = `
-            SELECT A.name
-            FROM teacher T, account A
-            WHERE T.user_id = A.user_id;
+            with t_userid as (
+                SELECT T.teacher_id, A.name
+                FROM account A, teacher T
+                WHERE A.user_id = T.user_id
+            )
+                SELECT Tu.name
+                FROM t_userid Tu, program P
+                WHERE tu.teacher_id = P.teacher_id
+                and P.program_id = ${req.params.id};
         `;
 
         let auth;
         await dbClient.query(find_teacher_id_query)
             .then((results)=>{
                 auth = results.rows[0].name;
+
             })
             .catch((err)=>{
                 console.error(err);
@@ -41,6 +48,7 @@ router.get(`/:id`,async (req, res, next)=>{
                     post_count : post_data['count'],
                     post_date : post_data['date'],
                     post_id : post_data['program_id'],
+                    user_category : req.session.category,
                 });
             })
             .catch((err)=>{
@@ -50,6 +58,53 @@ router.get(`/:id`,async (req, res, next)=>{
     } else {
         res.redirect("/login"); // fhrmdlsdmfh
       }
+});
+
+router.post(`/delete/:pid`, (req,res,next)=>{
+    if(req.session.user){
+        let author_check = false;
+        const author_query = `
+        SELECT T.teacher_id
+        FROM program P, teacher T
+        WHERE P.teacher_id = T.teacher_id
+            and T.user_id = '${req.session.user.id}'
+            and P.program_id = ${Number(req.params.pid)};
+        `;
+        console.log(req.session.user.id);
+        console.log(req.params.pid);
+        dbClient.query(author_query)
+            .then((results)=>{
+                console.log(results.rowCount);
+                if(results.rowCount == 1){
+                    author_check = true;
+                }
+                else {
+                    console.error(`alert`, {error : "삭제 권한이 없습니다."});
+                }
+            })
+            .catch((err)=>{
+                console.error(err);
+                res.render(`alert`, {error: "author_query 인증 오류"});
+            });
+
+
+
+
+        const deletepostquery = 
+        `
+            DELETE
+            FROM program
+            WHERE program_id = ${req.params.pid};
+        `;
+
+
+    } else {
+        res.render(`alert`, {error: "세션 만료. 재로그인 해주세요."});
+    }
+});
+
+router.post(`/update/:pid`, (req,res,next)=>{
+    
 });
 
 module.exports = router;

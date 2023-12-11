@@ -36,6 +36,7 @@ router.post(`/`, (req, res, next) => {
                 await dbClient.query(find_teacher_id_query)
                     .then((results)=>{
                         teacher_id = results.rows[0].teacher_id;
+                        console.log(teacher_id);
                     })
                     .catch((err)=>{
                         console.error(err);
@@ -61,7 +62,7 @@ router.post(`/`, (req, res, next) => {
 
                 const querystring = `
                     insert into program (teacher_id, category, title, content, count_max, date)
-                    values (1,'${post.category}', '${post.title}','${post.content}',${post.count_max},'${post.date}');
+                    values (0,'${post.category}', '${post.title}','${post.content}',${post.count_max},'${post.date}');
                 `;
         
                 await dbClient.query(querystring)

@@ -25,6 +25,7 @@ rc.center_register = async function (address, user_id, dis_data){
     await dbClient.query(centerid_query)
         .then((results)=>{
             centerid = results.rows[0].max;
+            console.log(centerid);
         })
         .catch((err)=>{
             console.error(err);

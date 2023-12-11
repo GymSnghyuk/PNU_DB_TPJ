@@ -39,7 +39,7 @@ rp.parent_register = async function (user_id, dis_data){
                 FROM disabled
                 WHERE user_id = '${dis_data[i]}';
             `;
-            
+            console.log(dis_data[i]);
             await dbClient.query(check_disabled_id)
                 .then((results)=>{
                     if(results.rowCount==1){

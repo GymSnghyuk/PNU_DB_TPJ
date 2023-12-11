@@ -43,6 +43,7 @@ router.post(`/`, (req, res, next) => {
                           name: ans.rows[0]['name'],
                           category: ans.rows[0][`user_category`],
                         };
+                        console.log(req.session.user);
                         res.redirect(`/`)
                       }
                 }

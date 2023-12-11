@@ -16,7 +16,7 @@ async function check_user_category(post){
     } else if(post.user_category == 2){
         console.log("보호자");
         let dis_data=[];
-        for(let i=0; i<post.count_parent+1; ++i){
+        for(let i=0; i<post.count_disabled; ++i){
             dis_data.push(post[`disabled_parent_${i}`]);
         };
         console.log(dis_data);
