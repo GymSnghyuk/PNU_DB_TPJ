@@ -11,7 +11,11 @@
     <%- include('top.ejs') %>
     <div id="hidden_div">
       <div id="recommended_content">
+        <%if(hidden_div == 1) {%>
         <span id="recommended_title">추천 프로그램</span>
+        <%} else if(hidden_div == 4) {%>
+        <span id="recommended_title">나의 프로그램</span>
+        <%}%>
       </div>
       <%- include('search.ejs')%>
     </div>
@@ -23,9 +27,6 @@
           let frm = document.getElementById('post_frm');
           frm.action = `/post/${url}`
           frm.submit();
-      }
-      if(<%=hidden_div%>){
-        document.getElementById("hidden_div").style.display = "none";
       }
     </script>
   </body>

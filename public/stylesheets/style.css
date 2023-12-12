@@ -603,6 +603,17 @@ li {
     background-color: #444;
     color: white;
 }
+#connect_disabled {
+    display: block;
+    width: 140px;
+    margin: 0 auto;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #444;
+    color: white;
+    margin-top: 100px;
+}
 @media (max-width:980px) {
     
 }
