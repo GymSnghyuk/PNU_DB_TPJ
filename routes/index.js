@@ -33,6 +33,31 @@ router.get(`/`, (req, res) => {
           console.error(err);
           res.render(`alert`, { error: "오류났어요" });
         });
+    } else if (req.session.user.category == 4) {
+      const querystring = `
+        with tid as (
+          SELECT teacher_id
+          FROM teacher
+          WHERE user_id = '${req.session.user.id}'
+        )
+        SELECT *
+        FROM program P, tid T
+        WHERE P.teacher_id = T.teacher_id;
+      `;
+
+      dbClient
+        .query(querystring)
+        .then((results) => {
+          res.render(`index`, {
+            posts: results.rows,
+            hidden_div: false,
+            login: true,
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.render(`alert`, { error: "오류났어요" });
+        });
     } else {
       res.render(`post_list`, {
         posts: empty_posts,
