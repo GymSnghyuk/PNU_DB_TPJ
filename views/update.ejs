@@ -14,7 +14,7 @@
             <tr>
                 <td colspan="3">
                     <div class="write_head">
-                        <span>프로그램 등록하기</span>
+                        <span>프로그램 수정하기</span>
                     </div>
                 </td>
             </tr>
@@ -57,12 +57,12 @@
                 <th><span>최대 인원 수</span></th>
                 <td colspan="2">
                     <div class="bottom_line">
-                        <input type="text" id="count_max" name="count_max" placeholder="최대 등록 인원 수를 숫자만 입력하세요" value="<%=posts.count_max%>">
+                        <span id="count_max"><%=posts.count_max%></span>
                     </div>
                 </td>
             </tr>
         </table>
-        <button type="submit" id="submit_button2" class="submit_button2">등록하기</button>
+        <button type="submit" id="submit_button2" class="submit_button2">수정하기</button>
         </form>
     </div>
     <%- include('footer.ejs') %>

@@ -25,7 +25,7 @@ router.get(`/`, (req, res) => {
         .then((results) => {
           res.render(`index`, {
             posts: results.rows,
-            hidden_div: false,
+            hidden_div: 1,
             login: true,
           });
         })
@@ -50,7 +50,7 @@ router.get(`/`, (req, res) => {
         .then((results) => {
           res.render(`index`, {
             posts: results.rows,
-            hidden_div: false,
+            hidden_div: 4,
             login: true,
           });
         })
@@ -61,14 +61,14 @@ router.get(`/`, (req, res) => {
     } else {
       res.render(`post_list`, {
         posts: empty_posts,
-        hidden_div: true,
+        hidden_div: -1,
         login: true,
       });
     }
   } else {
     res.render(`index`, {
       posts: empty_posts,
-      hidden_div: true,
+      hidden_div: -1,
       login: false,
     });
   }
