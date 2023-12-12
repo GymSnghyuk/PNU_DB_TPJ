@@ -34,7 +34,7 @@ router.get(`/`, (req, res) => {
           res.render(`alert`, { error: "오류났어요" });
         });
     } else {
-      res.render(`index`, {
+      res.render(`post_list`, {
         posts: empty_posts,
         hidden_div: true,
         login: true,
