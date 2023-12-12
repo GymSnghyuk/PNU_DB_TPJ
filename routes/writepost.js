@@ -4,11 +4,16 @@ const dbClient = require(`../lib/db`);
 const qs = require(`querystring`);
 
 router.get(`/`, (req, res, next) => {
-  if (req.session.user.category == 4 || req.session.user.category == 0) {
-    res.render(`write`, { login: true });
-  } else {
-    res.render(`alert`, { error: "게시 권한이 없습니다." });
-  }
+    if(req.session.user){
+        if (req.session.user.category == 4 || req.session.user.category == 0) {
+            res.render(`write`, { login: true });
+          } else {
+            res.render(`alert`, { error: "게시 권한이 없습니다." });
+          }
+    }
+    else {
+        res.render(`alert`, {error: "세션 만료. 재로그인 해주세요."});
+    }
 });
 
 router.post(`/`, (req, res, next) => {
